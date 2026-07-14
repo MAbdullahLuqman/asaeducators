@@ -8,7 +8,12 @@ html {
 
 body {
   background:
-    radial-gradient(circle at 18% 12%, rgba(192, 138, 62, 0.12), transparent 28rem),
-    radial-gradient(circle at 82% 18%, rgba(107, 91, 46, 0.1), transparent 24rem),
-    #f8f9fa;
+    radial-gradient(circle at 18% 12%, rgba(36, 56, 41, 0.13), transparent 28rem),
+    radial-gradient(circle at 82% 18%, rgba(78, 124, 120, 0.08), transparent 24rem),
+    #f8f5ef;
+}
+
+::selection {
+  background: #e5eee7;
+  color: #171a1f;
 }

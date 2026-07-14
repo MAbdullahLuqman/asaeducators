@@ -7,9 +7,9 @@ export default function ArticleShell({ eyebrow, title, excerpt, children }) {
         href="/blog"
         className="mb-10 inline-flex min-h-12 items-center rounded-full border border-line bg-white px-5 text-sm font-semibold text-olive shadow-soft transition hover:border-olive active:scale-[0.97]"
       >
-        Back to journal
+        Back to resources
       </Link>
-      <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-[#9A7B35]">
+      <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
         {eyebrow}
       </p>
       <h1 className="font-serif text-[clamp(2.25rem,5.2vw,4.4rem)] leading-[1] text-[#1A1D24]">

@@ -5,18 +5,20 @@ const columns = [
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About" },
-      { href: "/services", label: "Services" },
-      { href: "/blog", label: "Blog" }
+      { href: "/about", label: "About Us" },
+      { href: "/success-stories", label: "Success Stories" },
+      { href: "/programs", label: "Study Pathways" },
+      { href: "/blog", label: "Blog/Resources" }
     ]
   },
   {
-    title: "Destinations",
+    title: "Study Pathways",
     links: [
-      { href: "/landing/study-in-australia", label: "Australia" },
-      { href: "/landing/study-in-canada", label: "Canada" },
-      { href: "/landing/study-in-usa", label: "United States" },
-      { href: "/landing/study-in-uk", label: "United Kingdom" }
+      { href: "/success-stories", label: "Cyprus Success Stories" },
+      { href: "/programs/cyprus-admissions", label: "Cyprus Admissions" },
+      { href: "/programs/visa-documentation", label: "Visa Documentation" },
+      { href: "/programs/scholarship-guidance", label: "Scholarship Guidance" },
+      { href: "/programs/pre-departure-support", label: "Pre-Departure Support" }
     ]
   }
 ];
@@ -24,26 +26,26 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="bg-espresso text-canvas">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <Link href="/" className="text-2xl font-semibold tracking-[-0.04em]">
             ASA Educators
           </Link>
           <p className="mt-5 max-w-md leading-7 text-white/68">
-            Study abroad advisory for students who want clear admissions,
-            scholarship, visa, and arrival planning.
+            Premium study abroad guidance for students pursuing admissions,
+            visas, and trusted international education pathways.
           </p>
           <Link
-            href="/services#lead-form"
-            className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-gold px-6 text-sm font-semibold text-espresso transition hover:bg-[#D69B4C] active:scale-[0.97]"
+            href="/programs#lead-form"
+            className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
           >
-            Book consultation <ArrowRight size={18} />
+            Start application <ArrowRight size={18} />
           </Link>
         </div>
 
         {columns.map((column) => (
           <div key={column.title}>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive-soft">
               {column.title}
             </p>
             <div className="mt-5 grid gap-3">
@@ -68,10 +70,10 @@ export default function Footer() {
               <Mail size={16} /> hello@asaeducators.com
             </span>
             <span className="inline-flex items-center gap-2">
-              <Phone size={16} /> Consultation desk
+              <Phone size={16} /> +92 300 1304726
             </span>
             <span className="inline-flex items-center gap-2">
-              <MapPin size={16} /> Global student support
+              <MapPin size={16} /> Faisalabad, Pakistan
             </span>
           </div>
           <p>© 2026 ASA Educators. All rights reserved.</p>

@@ -10,7 +10,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const post = await getBlogPost(params.slug);
   return {
-    title: post ? `${post.title} | ASA Educators` : "Article | ASA Educators"
+    title: post ? post.title : "Article",
+    description: post?.excerpt
   };
 }
 
@@ -24,7 +25,7 @@ export default async function BlogPostPage({ params }) {
   return (
     <main className="min-h-screen bg-canvas">
       <ArticleShell
-        eyebrow={`${post.date} / ${post.readTime}`}
+        eyebrow={`${post.category} / ${post.date} / ${post.readTime}`}
         title={post.title}
         excerpt={post.excerpt}
       >
