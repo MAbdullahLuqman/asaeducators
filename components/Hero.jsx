@@ -13,6 +13,40 @@ const heroImage =
 const cardImage =
   "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=88";
 
+function CyprusFeatureCard({ imageClassName = "h-52", imageSizes = "26rem" }) {
+  return (
+    <>
+      <div className={`relative overflow-hidden rounded-xl ${imageClassName}`}>
+        <Image
+          src={cardImage}
+          alt="Graduates celebrating on campus"
+          fill
+          sizes={imageSizes}
+          className="object-cover object-[center_42%] saturate-[1.04]"
+        />
+        <div className="absolute left-3 top-3 rounded-full bg-white/82 px-3 py-1 text-xs font-semibold text-espresso">
+          Featured
+        </div>
+      </div>
+      <div className="px-3 pb-2 pt-5">
+        <h2 className="text-[clamp(1.75rem,2.2vw,2.25rem)] font-semibold tracking-[-0.03em]">
+          Cyprus Spring 2026
+        </h2>
+        <p className="mt-3 text-base leading-7 text-white/70">
+          Recent approvals across American University of Cyprus and Alexander
+          College with dedicated counselor support.
+        </p>
+        <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+          <span className="text-xs text-white/56">Visa pathway snapshot</span>
+          <Link href="/success-stories" className="text-xs font-semibold text-olive-soft">
+            View outcomes
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="bg-canvas px-0 pb-10 pt-20 sm:px-6 sm:pb-12 sm:pt-24 lg:px-8">
@@ -51,6 +85,15 @@ export default function Hero() {
               Explore Pathways
             </Link>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring, delay: 0.14 }}
+            className="mt-7 overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:hidden"
+          >
+            <CyprusFeatureCard imageClassName="h-40" imageSizes="100vw" />
+          </motion.div>
         </div>
 
         <motion.aside
@@ -59,33 +102,10 @@ export default function Hero() {
           transition={{ ...spring, delay: 0.14 }}
           className="relative z-20 mx-6 mb-6 hidden overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:absolute sm:bottom-14 sm:right-8 sm:m-0 sm:block sm:w-[26rem] xl:w-[29rem]"
         >
-          <div className="relative h-52 overflow-hidden rounded-xl xl:h-56">
-            <Image
-              src={cardImage}
-              alt="Graduates celebrating on campus"
-              fill
-              sizes="(min-width: 1280px) 29rem, 26rem"
-              className="object-cover object-[center_42%] saturate-[1.04]"
-            />
-            <div className="absolute left-3 top-3 rounded-full bg-white/82 px-3 py-1 text-xs font-semibold text-espresso">
-              Featured
-            </div>
-          </div>
-          <div className="px-3 pb-2 pt-5">
-            <h2 className="text-[clamp(1.75rem,2.2vw,2.25rem)] font-semibold tracking-[-0.03em]">
-              Cyprus Spring 2026
-            </h2>
-            <p className="mt-3 text-base leading-7 text-white/70">
-              Recent approvals across American University of Cyprus and
-              Alexander College with dedicated counselor support.
-            </p>
-            <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-              <span className="text-xs text-white/56">Visa pathway snapshot</span>
-              <Link href="/success-stories" className="text-xs font-semibold text-olive-soft">
-                View outcomes
-              </Link>
-            </div>
-          </div>
+          <CyprusFeatureCard
+            imageClassName="h-52 xl:h-56"
+            imageSizes="(min-width: 1280px) 29rem, 26rem"
+          />
         </motion.aside>
       </div>
     </section>
