@@ -101,20 +101,20 @@ export default function ServicesBento() {
                   onClick={() => setActive(service.title)}
                   className={`${service.span} group relative min-h-[250px] overflow-hidden rounded-2xl border p-6 text-left transition duration-300 hover:-translate-y-1 ${
                     selected
-                      ? "border-white/18 bg-white text-ink shadow-[0_28px_80px_rgba(0,0,0,0.24)]"
+                      ? "border-olive-soft/24 bg-olive text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)]"
                       : "border-white/10 bg-white/8 text-white shadow-[0_18px_55px_rgba(0,0,0,0.16)] hover:bg-white/12"
                   }`}
                 >
                   <span
                     className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl transition ${
-                      selected ? "bg-olive/16" : "bg-white/8"
+                      selected ? "bg-olive-soft/18" : "bg-white/8"
                     }`}
                   />
                   <motion.div layout className="relative flex items-start justify-between gap-5">
                     <div
                       className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
                         selected
-                          ? "border-olive/10 bg-gold-soft text-olive"
+                          ? "border-olive-soft/24 bg-white/10 text-olive-soft"
                           : "border-white/12 bg-white/10 text-olive-soft"
                       }`}
                     >
@@ -122,7 +122,7 @@ export default function ServicesBento() {
                     </div>
                     <span
                       className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] ${
-                        selected ? "bg-canvas text-muted" : "bg-white/10 text-white/62"
+                        selected ? "bg-white/14 text-olive-soft" : "bg-white/10 text-white/62"
                       }`}
                     >
                       {selected ? "Open" : "View"}
@@ -130,7 +130,7 @@ export default function ServicesBento() {
                   </motion.div>
                   <p
                     className={`relative mt-8 text-xs font-bold uppercase tracking-[0.18em] ${
-                      selected ? "text-olive" : "text-olive-soft"
+                      selected ? "text-olive-soft" : "text-olive-soft"
                     }`}
                   >
                     {service.kicker}
@@ -138,7 +138,7 @@ export default function ServicesBento() {
                   <motion.h3
                     layout
                     className={`relative mt-3 text-[clamp(1.25rem,2.2vw,1.7rem)] font-semibold leading-tight ${
-                      selected ? "text-ink" : "text-white"
+                      selected ? "text-white" : "text-white"
                     }`}
                   >
                     {service.title}
@@ -150,7 +150,7 @@ export default function ServicesBento() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={spring}
-                        className="relative mt-5 max-w-xl text-base leading-7 text-muted"
+                        className="relative mt-5 max-w-xl text-base leading-7 text-white/76"
                       >
                         {service.detail}
                       </motion.p>

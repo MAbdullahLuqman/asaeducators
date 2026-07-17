@@ -3,7 +3,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
-import { submitLead } from "@/lib/leads";
 
 const spring = { type: "spring", stiffness: 300, damping: 30 };
 
@@ -61,6 +60,7 @@ export default function LeadWizard() {
     setStatus("submitting");
 
     try {
+      const { submitLead } = await import("@/lib/leads");
       const result = await submitLead(values);
       setStorageTarget(result.stored);
       setSubmitted(true);

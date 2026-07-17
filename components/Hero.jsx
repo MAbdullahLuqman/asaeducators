@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const spring = { type: "spring", duration: 0.7, bounce: 0.12 };
 
@@ -29,9 +29,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-espresso/72 via-espresso/32 to-olive/24 sm:from-espresso/54 sm:via-espresso/10 sm:to-olive/16" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_82%,rgba(36,56,41,0.42),transparent_32rem),radial-gradient(circle_at_86%_16%,rgba(229,238,231,0.16),transparent_28rem)]" />
 
-        <div className="relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-start px-6 pb-8 pt-12 sm:min-h-[calc(100vh-7rem)] sm:justify-end sm:p-9 lg:p-12">
-          <div className="max-w-4xl pb-2 sm:pb-2 lg:pb-6">
-            <h1 className="max-w-[18rem] font-serif text-[clamp(2.65rem,15vw,4.65rem)] font-semibold leading-[0.92] text-white sm:max-w-5xl sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.95] sm:text-canvas">
+        <div className="relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-start px-6 pb-8 pt-12 sm:min-h-[calc(100vh-7rem)] sm:justify-end sm:p-9 lg:p-12 lg:pr-[31rem] xl:pr-[35rem]">
+          <div className="max-w-[42rem] pb-2 sm:pb-2 lg:max-w-[58rem] lg:pb-6">
+            <h1 className="max-w-[21rem] font-serif text-[clamp(2.65rem,12.5vw,4.4rem)] font-semibold leading-[0.94] text-white sm:max-w-[42rem] sm:text-[clamp(3.2rem,7.4vw,5.7rem)] sm:leading-[0.95] sm:text-canvas lg:max-w-none lg:text-[clamp(4rem,5.8vw,6.15rem)] xl:text-[clamp(4.4rem,5.6vw,6.4rem)]">
               Your trusted pathway to study in Europe.
             </h1>
           </div>
@@ -57,46 +57,33 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...spring, delay: 0.14 }}
-          className="relative z-20 mx-6 mb-6 hidden overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:absolute sm:bottom-8 sm:right-8 sm:m-0 sm:block sm:w-[22rem]"
+          className="relative z-20 mx-6 mb-6 hidden overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:absolute sm:bottom-14 sm:right-8 sm:m-0 sm:block sm:w-[26rem] xl:w-[29rem]"
         >
-          <div className="relative h-44 overflow-hidden rounded-xl">
+          <div className="relative h-52 overflow-hidden rounded-xl xl:h-56">
             <Image
               src={cardImage}
               alt="Graduates celebrating on campus"
               fill
-              sizes="22rem"
+              sizes="(min-width: 1280px) 29rem, 26rem"
               className="object-cover object-[center_42%] saturate-[1.04]"
             />
             <div className="absolute left-3 top-3 rounded-full bg-white/82 px-3 py-1 text-xs font-semibold text-espresso">
               Featured
             </div>
           </div>
-          <div className="px-2 pb-2 pt-4">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em]">
+          <div className="px-3 pb-2 pt-5">
+            <h2 className="text-[clamp(1.75rem,2.2vw,2.25rem)] font-semibold tracking-[-0.03em]">
               Cyprus Spring 2026
             </h2>
-            <p className="mt-2 text-sm leading-6 text-white/68">
+            <p className="mt-3 text-base leading-7 text-white/70">
               Recent approvals across American University of Cyprus and
               Alexander College with dedicated counselor support.
             </p>
-            <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+            <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
               <span className="text-xs text-white/56">Visa pathway snapshot</span>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  aria-label="Previous program"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/8 text-white transition hover:bg-white/16 active:scale-[0.96]"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next program"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/8 text-white transition hover:bg-white/16 active:scale-[0.96]"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
+              <Link href="/success-stories" className="text-xs font-semibold text-olive-soft">
+                View outcomes
+              </Link>
             </div>
           </div>
         </motion.aside>

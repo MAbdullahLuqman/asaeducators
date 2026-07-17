@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   UserRound
 } from "lucide-react";
+import { getCounselors, getSuccessStories } from "@/lib/content";
 
 export const metadata = {
   title: "Success Stories",
@@ -16,94 +17,30 @@ export const metadata = {
     "See ASA Educators student visa approvals and admissions success stories for Cyprus, Europe 2026 intakes."
 };
 
-const successStories = [
-  {
-    studentName: "Ahmad Hussain",
-    university: "American University of Cyprus",
-    destination: "Cyprus, Europe",
-    intake: "Spring 2026",
-    counselor: "Mehreen CH",
-    contact: "+92 300 1304726"
-  },
-  {
-    studentName: "Hussain Ahmad",
-    university: "Alexander College",
-    destination: "Cyprus, Europe",
-    intake: "Spring 2026",
-    counselor: "Mehreen CH",
-    contact: "+92 300 1304726"
-  },
-  {
-    studentName: "M Tayyab Raza",
-    university: "American University of Cyprus",
-    destination: "Cyprus, Europe",
-    intake: "Spring 2026",
-    counselor: "Sadia Asim",
-    contact: "+92 300 1025752"
-  },
-  {
-    studentName: "Behroze Ali Khan",
-    university: "American University of Cyprus",
-    destination: "Cyprus, Europe",
-    intake: "Spring 2026",
-    counselor: "Sadia Asim",
-    contact: "+92 300 1025752"
-  },
-  {
-    studentName: "Shehzad Tanveer",
-    university: "Alexander College",
-    destination: "Cyprus, Europe",
-    intake: "2026 Intake",
-    counselor: "Mehreen CH",
-    contact: "+92 300 1304726"
-  },
-  {
-    studentName: "Samar Hayat",
-    university: "Alexander College",
-    destination: "Cyprus, Europe",
-    intake: "Spring 2026",
-    counselor: "Sadia Asim",
-    contact: "+92 300 1025752"
-  },
-  {
-    studentName: "M Usama",
-    university: "Alexander College",
-    destination: "Cyprus, Europe",
-    intake: "2026 Intake",
-    counselor: "Sadia Asim",
-    contact: "+92 300 1025752"
-  }
-];
+const institutionSummaries = {
+  "American University of Cyprus":
+    "A modern Cyprus pathway for students seeking European academic exposure, practical programs, and international student support.",
+  "Alexander College":
+    "A focused destination for students planning a European education route with guided admissions and visa documentation."
+};
 
-const institutions = [
-  {
-    name: "American University of Cyprus",
+function buildInstitutions(successStories) {
+  const institutionNames = [...new Set(successStories.map((story) => story.university).filter(Boolean))];
+  return institutionNames.map((name) => ({
+    name,
     summary:
-      "A modern Cyprus pathway for students seeking European academic exposure, practical programs, and international student support.",
-    count: successStories.filter(
-      (story) => story.university === "American University of Cyprus"
-    ).length
-  },
-  {
-    name: "Alexander College",
-    summary:
-      "A focused destination for students planning a European education route with guided admissions and visa documentation.",
-    count: successStories.filter((story) => story.university === "Alexander College").length
-  }
-];
+      institutionSummaries[name] ||
+      "A trusted study abroad institution supported by ASA Educators counselor-led admissions and visa preparation.",
+    count: successStories.filter((story) => story.university === name).length
+  }));
+}
 
-const counselors = [
-  {
-    name: "Mehreen CH",
-    phone: "+92 300 1304726",
-    approvals: successStories.filter((story) => story.counselor === "Mehreen CH").length
-  },
-  {
-    name: "Sadia Asim",
-    phone: "+92 300 1025752",
-    approvals: successStories.filter((story) => story.counselor === "Sadia Asim").length
-  }
-];
+function buildCounselors(counselors, successStories) {
+  return counselors.map((counselor) => ({
+    ...counselor,
+    approvals: successStories.filter((story) => story.counselor === counselor.name).length
+  }));
+}
 
 function SuccessCard({ story }) {
   return (
@@ -206,7 +143,11 @@ function CounselorCard({ counselor }) {
   );
 }
 
-export default function SuccessStoriesPage() {
+export default async function SuccessStoriesPage() {
+  const successStories = await getSuccessStories();
+  const counselors = buildCounselors(await getCounselors(), successStories);
+  const institutions = buildInstitutions(successStories);
+
   return (
     <main className="min-h-screen bg-canvas">
       <section className="relative isolate overflow-hidden bg-espresso px-6 pb-20 pt-36 text-white sm:px-8 lg:pb-24">
