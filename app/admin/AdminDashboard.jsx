@@ -598,7 +598,7 @@ export default function AdminDashboard() {
                       }`}
                     >
                       <span className="block text-sm font-semibold">{getSummary(item, activeKey)}</span>
-                      <span className={`mt-1 block text-xs ${selectedIndex === index ? "text-white/78" : "text-muted"}`}>
+                      <span className={`mt-1 block text-xs ${selectedIndex === index ? "text-white/80" : "text-muted"}`}>
                         Record {index + 1}
                       </span>
                     </button>

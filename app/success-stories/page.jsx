@@ -121,7 +121,7 @@ export default async function SuccessStoriesPage() {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-canvas to-transparent" />
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-end">
           <div>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-olive-soft ring-1 ring-white/14">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-olive-soft ring-1 ring-white/15">
               <ShieldCheck size={16} aria-hidden="true" />
               Verified student outcomes
             </p>
@@ -141,18 +141,18 @@ export default async function SuccessStoriesPage() {
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-white/18 bg-[#252a31] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.26)]">
+          <div className="rounded-2xl border border-white/20 bg-[#252a31] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.26)]">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive-soft">
               Spring 2026 snapshot
             </p>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="rounded-xl bg-white/12 p-5">
+              <div className="rounded-xl bg-white/10 p-5">
                 <p className="text-4xl font-semibold">50</p>
-                <p className="mt-2 text-sm text-white/82">recent approvals</p>
+                <p className="mt-2 text-sm text-white/80">recent approvals</p>
               </div>
-              <div className="rounded-xl bg-white/12 p-5">
+              <div className="rounded-xl bg-white/10 p-5">
                 <p className="text-4xl font-semibold">7</p>
-                <p className="mt-2 text-sm text-white/82">Cyprus institutions</p>
+                <p className="mt-2 text-sm text-white/80">Cyprus institutions</p>
               </div>
             </div>
           </div>

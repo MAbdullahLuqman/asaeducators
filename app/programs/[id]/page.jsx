@@ -78,8 +78,8 @@ export default async function ProgramPage({ params }) {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/94 to-espresso/32 sm:from-espresso/96 sm:via-espresso/58 sm:to-espresso/16" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-espresso via-espresso/94 to-transparent p-6 sm:bg-gradient-to-t sm:from-espresso/94 sm:via-espresso/68 sm:to-transparent sm:p-10">
+            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/95 to-espresso/35 sm:from-espresso/95 sm:via-espresso/60 sm:to-espresso/15" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-espresso via-espresso/95 to-transparent p-6 sm:bg-gradient-to-t sm:from-espresso/95 sm:via-espresso/70 sm:to-transparent sm:p-10">
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-white">
                 {program.category} / {program.duration}
               </p>

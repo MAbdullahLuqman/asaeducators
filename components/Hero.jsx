@@ -24,7 +24,7 @@ function CyprusFeatureCard({ imageClassName = "h-52", imageSizes = "26rem" }) {
           sizes={imageSizes}
           className="object-cover object-[center_42%] saturate-[1.04]"
         />
-        <div className="absolute left-3 top-3 rounded-full bg-white/82 px-3 py-1 text-xs font-semibold text-espresso">
+        <div className="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-espresso">
           Featured
         </div>
       </div>
@@ -32,12 +32,12 @@ function CyprusFeatureCard({ imageClassName = "h-52", imageSizes = "26rem" }) {
         <h2 className="text-[clamp(1.75rem,2.2vw,2.25rem)] font-semibold tracking-[-0.03em]">
           Cyprus Spring 2026
         </h2>
-        <p className="mt-3 text-base leading-7 text-white/88">
+        <p className="mt-3 text-base leading-7 text-white/90">
           Recent approvals across American University of Cyprus and Alexander
           College with dedicated counselor support.
         </p>
         <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-          <span className="text-xs text-white/78">Visa pathway snapshot</span>
+          <span className="text-xs text-white/80">Visa pathway snapshot</span>
           <Link href="/success-stories" className="text-xs font-semibold text-white underline decoration-olive-soft/80 underline-offset-4">
             View outcomes
           </Link>
@@ -59,8 +59,8 @@ export default function Hero() {
           sizes="100vw"
           className="scale-[1.02] object-cover object-[58%_44%] saturate-[1.08] sm:object-[center_44%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-espresso/88 via-espresso/66 to-espresso/92 sm:bg-gradient-to-t sm:from-espresso/92 sm:via-espresso/38 sm:to-espresso/18" />
-        <div className="absolute inset-0 bg-gradient-to-r from-espresso/82 via-espresso/48 to-olive/36 sm:from-espresso/70 sm:via-espresso/30 sm:to-olive/26" />
+        <div className="absolute inset-0 bg-gradient-to-b from-espresso/90 via-espresso/65 to-espresso/90 sm:bg-gradient-to-t sm:from-espresso/90 sm:via-espresso/40 sm:to-espresso/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/50 to-olive/35 sm:from-espresso/70 sm:via-espresso/30 sm:to-olive/25" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_82%,rgba(36,56,41,0.42),transparent_32rem),radial-gradient(circle_at_86%_16%,rgba(229,238,231,0.16),transparent_28rem)]" />
 
         <div className="relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-start px-6 pb-8 pt-12 sm:min-h-[calc(100vh-7rem)] sm:justify-end sm:p-9 lg:p-12 lg:pr-[31rem] xl:pr-[35rem]">
@@ -80,7 +80,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/programs"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/45 bg-white/14 px-6 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 active:scale-[0.98]"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/45 bg-white/15 px-6 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 active:scale-[0.98]"
             >
               Explore Pathways
             </Link>
@@ -90,7 +90,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.14 }}
-            className="mt-7 overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:hidden"
+            className="mt-7 overflow-hidden rounded-2xl border border-white/15 bg-espresso/90 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:hidden"
           >
             <CyprusFeatureCard imageClassName="h-40" imageSizes="100vw" />
           </motion.div>

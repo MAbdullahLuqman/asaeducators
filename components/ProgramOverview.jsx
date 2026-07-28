@@ -69,8 +69,8 @@ export default function ProgramOverview() {
                 sizes="(min-width: 768px) 58vw, 100vw"
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/96 via-espresso/52 to-espresso/10" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/92 to-transparent p-6 sm:p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/50 to-espresso/10" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/90 to-transparent p-6 sm:p-8">
                 <h3 className="font-serif text-[clamp(2rem,4vw,3.4rem)] leading-none text-white">
                   {program.name}
                 </h3>

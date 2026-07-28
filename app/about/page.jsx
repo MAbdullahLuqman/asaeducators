@@ -75,7 +75,7 @@ export default function AboutPage() {
             sizes="(min-width: 1024px) 44vw, 100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-espresso/78 via-espresso/12 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/10 to-transparent" />
           <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/80 bg-ivory p-5 shadow-[0_16px_36px_rgba(0,0,0,0.24)]">
             <p className="text-4xl font-semibold text-olive">2,400+</p>
             <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted">

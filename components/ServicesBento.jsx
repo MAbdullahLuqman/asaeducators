@@ -81,7 +81,7 @@ export default function ServicesBento() {
                 A complete advisory system around every applicant.
               </h2>
             </div>
-            <p className="max-w-2xl text-lg leading-8 text-white/88">
+            <p className="max-w-2xl text-lg leading-8 text-white/90">
               Each service is designed as a visible checkpoint, so families know
               what has been reviewed, what is pending, and what moves the file
               forward.
@@ -101,28 +101,28 @@ export default function ServicesBento() {
                   onClick={() => setActive(service.title)}
                   className={`${service.span} group relative min-h-[250px] overflow-hidden rounded-2xl border p-6 text-left transition duration-300 hover:-translate-y-1 ${
                     selected
-                      ? "border-olive-soft/24 bg-olive text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)]"
-                      : "border-white/16 bg-[#252a31] text-white shadow-[0_18px_55px_rgba(0,0,0,0.16)] hover:bg-[#2d333b]"
+                      ? "border-olive-soft/25 bg-olive text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)]"
+                      : "border-white/15 bg-[#252a31] text-white shadow-[0_18px_55px_rgba(0,0,0,0.16)] hover:bg-[#2d333b]"
                   }`}
                 >
                   <span
                     className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl transition ${
-                      selected ? "bg-olive-soft/18" : "bg-white/10"
+                      selected ? "bg-olive-soft/20" : "bg-white/10"
                     }`}
                   />
                   <motion.div layout className="relative flex items-start justify-between gap-5">
                     <div
                       className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
                         selected
-                          ? "border-olive-soft/24 bg-white/10 text-olive-soft"
-                          : "border-white/18 bg-white/12 text-olive-soft"
+                          ? "border-olive-soft/25 bg-white/10 text-olive-soft"
+                          : "border-white/20 bg-white/10 text-olive-soft"
                       }`}
                     >
                       <Icon size={22} />
                     </div>
                     <span
                       className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] ${
-                        selected ? "bg-white/18 text-white" : "bg-white/14 text-white/88"
+                        selected ? "bg-white/20 text-white" : "bg-white/15 text-white/90"
                       }`}
                     >
                       {selected ? "Open" : "View"}
@@ -160,7 +160,7 @@ export default function ServicesBento() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={spring}
-                        className="relative mt-5 line-clamp-2 text-sm leading-6 text-white/78"
+                        className="relative mt-5 line-clamp-2 text-sm leading-6 text-white/80"
                       >
                         {service.detail}
                       </motion.p>

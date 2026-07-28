@@ -39,7 +39,7 @@ export default function Footer() {
             />
             ASA Educators
           </Link>
-          <p className="mt-5 max-w-md leading-7 text-white/84">
+          <p className="mt-5 max-w-md leading-7 text-white/85">
             Premium study abroad guidance for students pursuing admissions,
             visas, and trusted international education pathways.
           </p>
@@ -61,7 +61,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/84 transition hover:text-white"
+                  className="text-sm text-white/85 transition hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -72,7 +72,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-sm text-white/78 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-sm text-white/80 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
             <span className="inline-flex items-center gap-2">
               <Mail size={16} /> hello@asaeducators.com

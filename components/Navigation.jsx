@@ -23,7 +23,7 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-canvas shadow-soft md:bg-canvas/82 md:backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-canvas shadow-soft md:bg-canvas/80 md:backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
@@ -39,7 +39,7 @@ export default function Navigation() {
           Educators
         </Link>
 
-        <div className="hidden items-center rounded-full border border-line bg-white/82 p-1 shadow-soft md:flex">
+        <div className="hidden items-center rounded-full border border-line bg-white/80 p-1 shadow-soft md:flex">
           {links.map((link) => {
             const active =
               pathname === link.href ||
