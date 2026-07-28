@@ -35,7 +35,7 @@ export default function Footer() {
               alt="ASA Educators"
               width={64}
               height={64}
-              className="h-12 w-12 object-contain"
+              className="h-12 w-12 object-contain [clip-path:inset(0_0_12%_0)]"
             />
             ASA Educators
           </Link>

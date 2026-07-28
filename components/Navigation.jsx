@@ -34,7 +34,7 @@ export default function Navigation() {
             alt="ASA Educators"
             width={56}
             height={56}
-            className="mr-3 h-11 w-11 object-contain"
+            className="mr-3 h-11 w-11 object-contain [clip-path:inset(0_0_12%_0)]"
           />
           Educators
         </Link>
@@ -104,7 +104,7 @@ export default function Navigation() {
                   alt="ASA Educators"
                   width={56}
                   height={56}
-                  className="mr-3 h-11 w-11 object-contain"
+                  className="mr-3 h-11 w-11 object-contain [clip-path:inset(0_0_12%_0)]"
                 />
                 Educators
               </Link>
