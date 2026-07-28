@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
 const columns = [
@@ -28,15 +29,22 @@ export default function Footer() {
     <footer className="bg-espresso text-canvas">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
-          <Link href="/" className="text-2xl font-semibold tracking-[-0.04em]">
+          <Link href="/" className="inline-flex items-center gap-3 text-2xl font-semibold tracking-[-0.04em]">
+            <Image
+              src="/brand/asa-educators-mark.png"
+              alt="ASA Educators"
+              width={64}
+              height={64}
+              className="h-12 w-12 object-contain"
+            />
             ASA Educators
           </Link>
-          <p className="mt-5 max-w-md leading-7 text-white/68">
+          <p className="mt-5 max-w-md leading-7 text-white/84">
             Premium study abroad guidance for students pursuing admissions,
             visas, and trusted international education pathways.
           </p>
           <Link
-            href="/programs#lead-form"
+            href="/lead-form"
             className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
           >
             Start application <ArrowRight size={18} />
@@ -53,7 +61,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/70 transition hover:text-white"
+                  className="text-sm text-white/84 transition hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -64,7 +72,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-sm text-white/58 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-sm text-white/78 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
             <span className="inline-flex items-center gap-2">
               <Mail size={16} /> hello@asaeducators.com

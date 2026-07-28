@@ -9,7 +9,8 @@ import {
   ShieldCheck,
   UserRound
 } from "lucide-react";
-import { getCounselors, getSuccessStories } from "@/lib/content";
+import LeadWizard from "@/components/LeadWizard";
+import { getSuccessStories } from "@/lib/content";
 
 export const metadata = {
   title: "Success Stories",
@@ -32,13 +33,6 @@ function buildInstitutions(successStories) {
       institutionSummaries[name] ||
       "A trusted study abroad institution supported by ASA Educators counselor-led admissions and visa preparation.",
     count: successStories.filter((story) => story.university === name).length
-  }));
-}
-
-function buildCounselors(counselors, successStories) {
-  return counselors.map((counselor) => ({
-    ...counselor,
-    approvals: successStories.filter((story) => story.counselor === counselor.name).length
   }));
 }
 
@@ -116,36 +110,8 @@ function InstitutionCard({ institution }) {
   );
 }
 
-function CounselorCard({ counselor }) {
-  return (
-    <article className="rounded-2xl border border-white/12 bg-white/8 p-6 text-white shadow-[0_18px_55px_rgba(0,0,0,0.22)] backdrop-blur">
-      <div className="flex items-start justify-between gap-5">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive-soft">
-            Counselor
-          </p>
-          <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em]">
-            {counselor.name}
-          </h3>
-        </div>
-        <span className="rounded-full bg-gold px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
-          {counselor.approvals} wins
-        </span>
-      </div>
-      <Link
-        href={`tel:${counselor.phone.replaceAll(" ", "")}`}
-        className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-espresso transition duration-300 hover:-translate-y-0.5 hover:bg-gold-soft active:scale-[0.98]"
-      >
-        <Phone size={17} aria-hidden="true" />
-        WhatsApp / Phone: {counselor.phone}
-      </Link>
-    </article>
-  );
-}
-
 export default async function SuccessStoriesPage() {
   const successStories = await getSuccessStories();
-  const counselors = buildCounselors(await getCounselors(), successStories);
   const institutions = buildInstitutions(successStories);
 
   return (
@@ -162,12 +128,12 @@ export default async function SuccessStoriesPage() {
             <h1 className="max-w-5xl font-serif text-[clamp(2.7rem,6vw,5.8rem)] leading-[1]">
               ASA Educators Success Stories: Your Pathway to Europe
             </h1>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/82">
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/90">
               See how we&apos;ve helped ambitious students secure their visas and
               admissions to top institutions in Cyprus for the 2026 intakes.
             </p>
             <Link
-              href="/programs#lead-form"
+              href="/lead-form"
               className="mt-9 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
             >
               Start Your Application Today
@@ -175,18 +141,18 @@ export default async function SuccessStoriesPage() {
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-white/12 bg-white/10 p-6 shadow-[0_22px_70px_rgba(0,0,0,0.26)] backdrop-blur">
+          <div className="rounded-2xl border border-white/18 bg-[#252a31] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.26)]">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive-soft">
               Spring 2026 snapshot
             </p>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="rounded-xl bg-white/10 p-5">
-                <p className="text-4xl font-semibold">{successStories.length}</p>
-                <p className="mt-2 text-sm text-white/70">recent approvals</p>
+              <div className="rounded-xl bg-white/12 p-5">
+                <p className="text-4xl font-semibold">50</p>
+                <p className="mt-2 text-sm text-white/82">recent approvals</p>
               </div>
-              <div className="rounded-xl bg-white/10 p-5">
-                <p className="text-4xl font-semibold">2</p>
-                <p className="mt-2 text-sm text-white/70">Cyprus institutions</p>
+              <div className="rounded-xl bg-white/12 p-5">
+                <p className="text-4xl font-semibold">7</p>
+                <p className="mt-2 text-sm text-white/82">Cyprus institutions</p>
               </div>
             </div>
           </div>
@@ -232,36 +198,7 @@ export default async function SuccessStoriesPage() {
         </div>
       </section>
 
-      <section className="bg-espresso px-6 py-20 text-white sm:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div>
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive-soft">
-                Meet Our Counselors
-              </p>
-              <h2 className="font-serif text-[clamp(2.3rem,4.8vw,4.2rem)] leading-[1]">
-                Ready to Be Our Next Success Story?
-              </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-white/72">
-                Speak with an ASA counselor for admissions planning, document
-                preparation, and Cyprus visa guidance for upcoming intakes.
-              </p>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-2">
-              {counselors.map((counselor) => (
-                <CounselorCard key={counselor.name} counselor={counselor} />
-              ))}
-            </div>
-          </div>
-
-          <address className="mt-12 flex gap-3 rounded-2xl border border-white/12 bg-white/8 p-5 text-sm not-italic leading-6 text-white/76">
-            <MapPin className="mt-0.5 shrink-0 text-olive-soft" size={18} aria-hidden="true" />
-            ASA Educators, Al-Arabia Tower, Harianwala Chowk, D Ground Block B
-            People&apos;s Colony No 1, Faisalabad.
-          </address>
-        </div>
-      </section>
+      <LeadWizard />
     </main>
   );
 }

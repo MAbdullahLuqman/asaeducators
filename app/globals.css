@@ -17,3 +17,9 @@ body {
   background: #e5eee7;
   color: #171a1f;
 }
+
+/* Keep keyboard focus and browser-rendered text legible on every surface. */
+:focus-visible {
+  outline: 3px solid #e5eee7;
+  outline-offset: 3px;
+}

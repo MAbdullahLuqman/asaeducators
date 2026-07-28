@@ -32,13 +32,13 @@ function CyprusFeatureCard({ imageClassName = "h-52", imageSizes = "26rem" }) {
         <h2 className="text-[clamp(1.75rem,2.2vw,2.25rem)] font-semibold tracking-[-0.03em]">
           Cyprus Spring 2026
         </h2>
-        <p className="mt-3 text-base leading-7 text-white/70">
+        <p className="mt-3 text-base leading-7 text-white/88">
           Recent approvals across American University of Cyprus and Alexander
           College with dedicated counselor support.
         </p>
         <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-          <span className="text-xs text-white/56">Visa pathway snapshot</span>
-          <Link href="/success-stories" className="text-xs font-semibold text-olive-soft">
+          <span className="text-xs text-white/78">Visa pathway snapshot</span>
+          <Link href="/success-stories" className="text-xs font-semibold text-white underline decoration-olive-soft/80 underline-offset-4">
             View outcomes
           </Link>
         </div>
@@ -59,8 +59,8 @@ export default function Hero() {
           sizes="100vw"
           className="scale-[1.02] object-cover object-[58%_44%] saturate-[1.08] sm:object-[center_44%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/58 to-espresso/86 sm:bg-gradient-to-t sm:from-espresso/86 sm:via-espresso/18 sm:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-espresso/72 via-espresso/32 to-olive/24 sm:from-espresso/54 sm:via-espresso/10 sm:to-olive/16" />
+        <div className="absolute inset-0 bg-gradient-to-b from-espresso/88 via-espresso/66 to-espresso/92 sm:bg-gradient-to-t sm:from-espresso/92 sm:via-espresso/38 sm:to-espresso/18" />
+        <div className="absolute inset-0 bg-gradient-to-r from-espresso/82 via-espresso/48 to-olive/36 sm:from-espresso/70 sm:via-espresso/30 sm:to-olive/26" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_82%,rgba(36,56,41,0.42),transparent_32rem),radial-gradient(circle_at_86%_16%,rgba(229,238,231,0.16),transparent_28rem)]" />
 
         <div className="relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-start px-6 pb-8 pt-12 sm:min-h-[calc(100vh-7rem)] sm:justify-end sm:p-9 lg:p-12 lg:pr-[31rem] xl:pr-[35rem]">
@@ -100,7 +100,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...spring, delay: 0.14 }}
-          className="relative z-20 mx-6 mb-6 hidden overflow-hidden rounded-2xl border border-white/16 bg-espresso/88 p-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:absolute sm:bottom-14 sm:right-8 sm:m-0 sm:block sm:w-[26rem] xl:w-[29rem]"
+          className="relative z-20 mx-6 mb-6 hidden overflow-hidden rounded-2xl border border-white/20 bg-espresso/95 p-3 text-white shadow-[0_20px_60px_rgba(0,0,0,0.36)] sm:absolute sm:bottom-14 sm:right-8 sm:m-0 sm:block sm:w-[26rem] xl:w-[29rem]"
         >
           <CyprusFeatureCard
             imageClassName="h-52 xl:h-56"

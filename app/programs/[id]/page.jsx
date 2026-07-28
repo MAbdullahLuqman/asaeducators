@@ -69,7 +69,7 @@ export default async function ProgramPage({ params }) {
           <ArrowLeft size={18} /> All pathways
         </Link>
         <div className="relative overflow-hidden rounded-[2rem] border border-line bg-white shadow-plush">
-          <div className="relative min-h-[520px]">
+          <div className="relative min-h-[560px] sm:min-h-[520px]">
             <Image
               src={program.image}
               alt={`${program.title} study abroad pathway`}
@@ -78,15 +78,15 @@ export default async function ProgramPage({ params }) {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso/92 via-espresso/46 to-espresso/12" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive-soft">
+            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/94 to-espresso/32 sm:from-espresso/96 sm:via-espresso/58 sm:to-espresso/16" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-espresso via-espresso/94 to-transparent p-6 sm:bg-gradient-to-t sm:from-espresso/94 sm:via-espresso/68 sm:to-transparent sm:p-10">
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-white">
                 {program.category} / {program.duration}
               </p>
-              <h1 className="max-w-4xl font-serif text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1] text-white">
+              <h1 className="max-w-4xl font-serif text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
                 {program.title}
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/84">
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.62)] sm:text-white/90">
                 {program.description}
               </p>
             </div>

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import ArticleShell from "@/components/ArticleShell";
+import LeadWizard from "@/components/LeadWizard";
 import { getBlogPost, getBlogPosts } from "@/lib/content";
 
 export async function generateStaticParams() {
@@ -38,6 +39,7 @@ export default async function BlogPostPage({ params }) {
           </section>
         ))}
       </ArticleShell>
+      <LeadWizard />
     </main>
   );
 }

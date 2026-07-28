@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Skeleton from "@/components/Skeleton";
+import LeadWizard from "@/components/LeadWizard";
 import { getBlogPosts } from "@/lib/content";
 
 export const metadata = {
@@ -52,6 +53,7 @@ export default function BlogPage() {
       <Suspense fallback={<Skeleton />}>
         <BlogList />
       </Suspense>
+      <LeadWizard />
     </main>
   );
 }

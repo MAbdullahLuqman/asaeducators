@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, Globe2, UsersRound } from "lucide-react";
+import LeadWizard from "@/components/LeadWizard";
+import { ArrowRight, ClipboardCheck, Globe2, UsersRound } from "lucide-react";
 
 export const metadata = {
   title: "About ASA Educators"
@@ -74,10 +75,10 @@ export default function AboutPage() {
             sizes="(min-width: 1024px) 44vw, 100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-espresso/72 via-transparent to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/92 p-5 backdrop-blur-md">
+          <div className="absolute inset-0 bg-gradient-to-t from-espresso/78 via-espresso/12 to-transparent" />
+          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/80 bg-ivory p-5 shadow-[0_16px_36px_rgba(0,0,0,0.24)]">
             <p className="text-4xl font-semibold text-olive">2,400+</p>
-            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#7C8597]">
+            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted">
               students advised
             </p>
           </div>
@@ -138,24 +139,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="lead-form" className="border-t border-gray-100 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-12 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive">
-              Ready when you are
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
-              Build your first shortlist with an advisor.
-            </h2>
-          </div>
-          <Link
-            href="/programs#lead-form"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-olive px-6 text-sm font-semibold text-white shadow-button transition hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
-          >
-            Book consultation <CheckCircle2 size={18} />
-          </Link>
-        </div>
-      </section>
+      <LeadWizard />
     </main>
   );
 }

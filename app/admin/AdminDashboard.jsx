@@ -2,6 +2,7 @@
 
 import {
   AlertCircle,
+  FilePlus2,
   CheckCircle2,
   Database,
   Edit3,
@@ -10,14 +11,17 @@ import {
   LayoutDashboard,
   LogOut,
   Mail,
+  Plus,
   Save,
   ShieldCheck,
   Trophy,
-  Users
+  Users,
+  RefreshCw,
+  Trash2
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db, isFirebaseConfigured } from "@/lib/firebase";
 import { editableContentGroups } from "@/lib/defaultContent";
 
@@ -62,8 +66,67 @@ const contentTabs = [
 
 const storageKey = (groupKey) => `asaeducators:adminContent:${groupKey}`;
 
+const friendlyFields = {
+  stats: [
+    { key: "value", label: "Highlight number" },
+    { key: "label", label: "Description" }
+  ],
+  programs: [
+    { key: "title", label: "Pathway title" },
+    { key: "category", label: "Category" },
+    { key: "level", label: "Study level" },
+    { key: "duration", label: "Duration / intake" },
+    { key: "summary", label: "Short card summary", multiline: true },
+    { key: "description", label: "Full pathway description", multiline: true },
+    { key: "image", label: "Image URL" },
+    { key: "outcomes", label: "Student outcomes (one per line)", list: true, multiline: true },
+    { key: "modules", label: "Pathway modules (one per line)", list: true, multiline: true }
+  ],
+  successStories: [
+    { key: "studentName", label: "Student name" },
+    { key: "university", label: "University" },
+    { key: "destination", label: "Destination" },
+    { key: "intake", label: "Intake" },
+    { key: "counselor", label: "Counselor" },
+    { key: "contact", label: "Counselor phone" }
+  ],
+  blogPosts: [
+    { key: "title", label: "Post title" },
+    { key: "category", label: "Category" },
+    { key: "date", label: "Publish date" },
+    { key: "readTime", label: "Reading time" },
+    { key: "excerpt", label: "Listing summary", multiline: true }
+  ],
+  counselors: [
+    { key: "name", label: "Counselor name" },
+    { key: "phone", label: "Phone number" }
+  ],
+  siteSettings: [
+    { key: "name", label: "Organization name" },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Phone" },
+    { key: "address", label: "Address", multiline: true }
+  ]
+};
+
 function formatJson(value) {
   return JSON.stringify(value, null, 2);
+}
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function formatLeadDate(value) {
+  if (!value) return "Just now";
+  const date = typeof value?.toDate === "function" ? value.toDate() : new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "Just now"
+    : new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
 
 function getSummary(item, groupKey) {
@@ -102,6 +165,10 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [leads, setLeads] = useState([]);
+  const [leadLoading, setLeadLoading] = useState(false);
+  const [leadError, setLeadError] = useState("");
+  const [blogForm, setBlogForm] = useState({ title: "", category: "", excerpt: "", body: "" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const firebaseMode = Boolean(isFirebaseConfigured && db);
   const authRequired = Boolean(firebaseMode && auth);
@@ -141,6 +208,7 @@ export default function AdminDashboard() {
 
         setItems(nextItems);
         setDraft(formatJson(nextItems));
+        setSelectedIndex(0);
       } catch (loadError) {
         setError(loadError.message || "Unable to load this content group.");
       } finally {
@@ -153,20 +221,25 @@ export default function AdminDashboard() {
     }
   }, [activeKey, authRequired, firebaseMode, user]);
 
-  useEffect(() => {
-    async function loadLeads() {
-      if (!firebaseMode || !user) return;
+  const loadLeads = useCallback(async () => {
+    if (!firebaseMode || !user) return;
 
-      try {
-        const snapshot = await getDocs(query(collection(db, "leads"), orderBy("createdAt", "desc")));
-        setLeads(snapshot.docs.map((leadDoc) => ({ id: leadDoc.id, ...leadDoc.data() })));
-      } catch {
-        setLeads([]);
-      }
+    setLeadLoading(true);
+    setLeadError("");
+    try {
+      const snapshot = await getDocs(query(collection(db, "leads"), orderBy("createdAt", "desc")));
+      setLeads(snapshot.docs.map((leadDoc) => ({ id: leadDoc.id, ...leadDoc.data() })));
+    } catch {
+      setLeads([]);
+      setLeadError("Unable to load leads. Check Firestore permissions and the createdAt index.");
+    } finally {
+      setLeadLoading(false);
     }
-
-    loadLeads();
   }, [firebaseMode, user]);
+
+  useEffect(() => {
+    loadLeads();
+  }, [loadLeads]);
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -209,12 +282,128 @@ export default function AdminDashboard() {
     }
   }
 
+  async function handleCreateBlogPost(event) {
+    event.preventDefault();
+    setError("");
+    setMessage("");
+
+    const title = blogForm.title.trim();
+    const category = blogForm.category.trim();
+    const excerpt = blogForm.excerpt.trim();
+    const body = blogForm.body.trim();
+    const slug = slugify(title);
+
+    if (!title || !category || !excerpt || !body || !slug) {
+      setError("Add a title, category, summary, and article body before publishing.");
+      return;
+    }
+
+    try {
+      const currentPosts = JSON.parse(draft);
+      if (!Array.isArray(currentPosts)) throw new Error("Blog content must be a JSON array.");
+      if (currentPosts.some((post) => post.slug === slug)) {
+        throw new Error("A blog post with this title already exists. Change the title to create a unique URL.");
+      }
+
+      const paragraphs = body.split(/\n\s*\n/).filter(Boolean);
+      const newPost = {
+        slug,
+        title,
+        excerpt,
+        date: new Date().toISOString().slice(0, 10),
+        readTime: `${Math.max(1, Math.ceil(body.split(/\s+/).length / 200))} min read`,
+        category,
+        sections: paragraphs.map((paragraph, index) => ({
+          heading: index === 0 ? "Overview" : `Key point ${index + 1}`,
+          body: paragraph
+        }))
+      };
+      const nextPosts = [newPost, ...currentPosts];
+
+      setSaving(true);
+      if (firebaseMode) {
+        await setDoc(doc(db, "adminContent", "blogPosts"), {
+          items: nextPosts,
+          updatedAt: serverTimestamp()
+        });
+      } else {
+        writeLocalGroup("blogPosts", nextPosts);
+      }
+
+      setItems(nextPosts);
+      setDraft(formatJson(nextPosts));
+      setBlogForm({ title: "", category: "", excerpt: "", body: "" });
+      setMessage(firebaseMode ? "Blog post published to Firebase." : "Blog post saved locally for this browser.");
+    } catch (publishError) {
+      setError(publishError.message || "Unable to publish this blog post.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleLeadStatus(leadId, status) {
+    if (!firebaseMode) return;
+    setLeadError("");
+    try {
+      await updateDoc(doc(db, "leads", leadId), { status, updatedAt: serverTimestamp() });
+      setLeads((currentLeads) =>
+        currentLeads.map((lead) => (lead.id === leadId ? { ...lead, status } : lead))
+      );
+    } catch {
+      setLeadError("Unable to update this lead. Check Firestore permissions.");
+    }
+  }
+
   function resetDraft() {
     const fallback = editableContentGroups[activeKey] || [];
     setItems(fallback);
     setDraft(formatJson(fallback));
     setMessage("Draft reset to bundled defaults. Save to persist it.");
     setError("");
+  }
+
+  const editorFields = friendlyFields[activeKey] || [];
+  const selectedItem = items[selectedIndex] || null;
+
+  function updateFriendlyField(field, value) {
+    const nextItems = items.map((item, index) => {
+      if (index !== selectedIndex) return item;
+      return {
+        ...item,
+        [field.key]: field.list
+          ? value.split("\n").map((entry) => entry.trim()).filter(Boolean)
+          : value
+      };
+    });
+    setItems(nextItems);
+    setDraft(formatJson(nextItems));
+  }
+
+  function addRecord() {
+    const defaultRecord = editorFields.reduce((record, field) => {
+      record[field.key] = field.list ? [] : "";
+      return record;
+    }, {});
+    if (activeKey === "programs") {
+      defaultRecord.id = `pathway-${Date.now()}`;
+      defaultRecord.faqs = [];
+    }
+    if (activeKey === "blogPosts") {
+      defaultRecord.slug = `new-post-${Date.now()}`;
+      defaultRecord.sections = [];
+    }
+    const nextItems = [...items, defaultRecord];
+    setItems(nextItems);
+    setDraft(formatJson(nextItems));
+    setSelectedIndex(nextItems.length - 1);
+  }
+
+  function deleteRecord() {
+    if (!selectedItem) return;
+    const nextItems = items.filter((_, index) => index !== selectedIndex);
+    setItems(nextItems);
+    setDraft(formatJson(nextItems));
+    setSelectedIndex(Math.max(0, selectedIndex - 1));
   }
 
   if (!authReady) {
@@ -378,6 +567,85 @@ export default function AdminDashboard() {
               </div>
             </div>
 
+            <section className="mt-6 rounded-2xl border border-[#dbe7dd] bg-[#f4f8f3] p-5 sm:p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-olive">Edit records</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    Select a record, edit the labeled fields, then use Save to publish your changes.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={addRecord}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-olive px-5 text-sm font-semibold text-white shadow-button transition hover:bg-olive-dark"
+                >
+                  <Plus size={17} /> Add record
+                </button>
+              </div>
+
+              <div className="mt-5 grid gap-5 lg:grid-cols-[14rem_1fr]">
+                <div className="grid max-h-[32rem] gap-2 overflow-y-auto pr-1">
+                  {items.map((item, index) => (
+                    <button
+                      key={`${activeKey}-editor-${index}`}
+                      type="button"
+                      onClick={() => setSelectedIndex(index)}
+                      className={`rounded-xl border p-4 text-left transition ${
+                        selectedIndex === index
+                          ? "border-olive bg-olive text-white shadow-button"
+                          : "border-line bg-white text-ink hover:border-olive"
+                      }`}
+                    >
+                      <span className="block text-sm font-semibold">{getSummary(item, activeKey)}</span>
+                      <span className={`mt-1 block text-xs ${selectedIndex === index ? "text-white/78" : "text-muted"}`}>
+                        Record {index + 1}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+                {selectedItem ? (
+                  <div className="rounded-xl border border-line bg-white p-5">
+                    <div className="mb-5 flex items-center justify-between gap-4">
+                      <p className="text-lg font-semibold text-ink">{getSummary(selectedItem, activeKey) || "New record"}</p>
+                      <button
+                        type="button"
+                        onClick={deleteRecord}
+                        className="inline-flex min-h-10 items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 text-sm font-semibold text-red-700 transition hover:bg-red-100"
+                      >
+                        <Trash2 size={16} /> Delete
+                      </button>
+                    </div>
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {editorFields.map((field) => (
+                        <label key={field.key} className={field.multiline ? "md:col-span-2" : ""}>
+                          <span className="mb-2 block text-sm font-semibold text-ink">{field.label}</span>
+                          {field.multiline ? (
+                            <textarea
+                              value={field.list ? (selectedItem[field.key] || []).join("\n") : selectedItem[field.key] || ""}
+                              onChange={(event) => updateFriendlyField(field, event.target.value)}
+                              className="min-h-28 w-full rounded-xl border border-line bg-white p-4 text-sm leading-6 text-ink outline-none transition focus:border-olive focus:ring-4 focus:ring-olive/15"
+                            />
+                          ) : (
+                            <input
+                              value={selectedItem[field.key] || ""}
+                              onChange={(event) => updateFriendlyField(field, event.target.value)}
+                              className="min-h-12 w-full rounded-xl border border-line bg-white px-4 text-sm text-ink outline-none transition focus:border-olive focus:ring-4 focus:ring-olive/15"
+                            />
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-dashed border-line bg-white p-8 text-sm text-muted">
+                    Add your first record to begin.
+                  </div>
+                )}
+              </div>
+            </section>
+
             {message ? (
               <p className="mt-5 flex gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm font-semibold text-green-700">
                 <CheckCircle2 size={17} />
@@ -391,13 +659,74 @@ export default function AdminDashboard() {
               </p>
             ) : null}
 
-            <textarea
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              spellCheck={false}
-              className="mt-6 min-h-[34rem] w-full resize-y rounded-lg border border-line bg-[#101411] p-5 font-mono text-sm leading-6 text-[#E7F4EC] outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
-              aria-label={`${activeTab.label} JSON editor`}
-            />
+            {activeKey === "blogPosts" ? (
+              <form
+                onSubmit={handleCreateBlogPost}
+                className="mt-6 rounded-lg border border-line bg-canvas p-5"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-soft text-olive">
+                    <FilePlus2 size={19} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-ink">Quick publish a blog post</p>
+                    <p className="mt-1 text-sm leading-6 text-muted">
+                      Write the article below. Separate paragraphs with a blank line and the dashboard will create readable article sections automatically.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <input
+                    value={blogForm.title}
+                    onChange={(event) => setBlogForm((form) => ({ ...form, title: event.target.value }))}
+                    placeholder="Post title"
+                    className="min-h-12 rounded-lg border border-line bg-white px-4 text-sm font-medium outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                  />
+                  <input
+                    value={blogForm.category}
+                    onChange={(event) => setBlogForm((form) => ({ ...form, category: event.target.value }))}
+                    placeholder="Category (for example, Visa Guides)"
+                    className="min-h-12 rounded-lg border border-line bg-white px-4 text-sm font-medium outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                  />
+                </div>
+                <textarea
+                  value={blogForm.excerpt}
+                  onChange={(event) => setBlogForm((form) => ({ ...form, excerpt: event.target.value }))}
+                  placeholder="Short summary shown on the blog listing"
+                  className="mt-4 min-h-24 w-full rounded-lg border border-line bg-white p-4 text-sm leading-6 outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                />
+                <textarea
+                  value={blogForm.body}
+                  onChange={(event) => setBlogForm((form) => ({ ...form, body: event.target.value }))}
+                  placeholder="Write the blog post here. Use a blank line between paragraphs."
+                  className="mt-4 min-h-52 w-full rounded-lg border border-line bg-white p-4 text-sm leading-6 outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                />
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full bg-olive px-5 text-sm font-semibold text-white shadow-button transition hover:bg-olive-dark disabled:opacity-50"
+                >
+                  <FilePlus2 size={17} />
+                  {saving ? "Publishing..." : "Publish blog post"}
+                </button>
+              </form>
+            ) : null}
+
+            <details className="mt-6 rounded-xl border border-line bg-white p-5">
+              <summary className="cursor-pointer text-sm font-semibold text-olive">
+                Advanced JSON editor
+              </summary>
+              <p className="mt-2 text-sm leading-6 text-muted">
+                Use this only for fields not shown above, such as program FAQs or full blog sections.
+              </p>
+              <textarea
+                value={draft}
+                onChange={(event) => setDraft(event.target.value)}
+                spellCheck={false}
+                className="mt-4 min-h-80 w-full resize-y rounded-xl border border-line bg-[#f8faf7] p-5 font-mono text-sm leading-6 text-[#263129] outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                aria-label={`${activeTab.label} JSON editor`}
+              />
+            </details>
           </section>
 
           <section className="rounded-lg border border-line bg-white p-6 shadow-soft">
@@ -413,16 +742,42 @@ export default function AdminDashboard() {
                 {firebaseMode ? `${leads.length} loaded` : "Firebase required"}
               </span>
             </div>
+            {firebaseMode ? (
+              <button
+                type="button"
+                onClick={loadLeads}
+                disabled={leadLoading}
+                className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-olive transition hover:border-olive disabled:opacity-50"
+              >
+                <RefreshCw size={16} className={leadLoading ? "animate-spin" : ""} />
+                Refresh leads
+              </button>
+            ) : null}
+            {leadError ? <p className="mt-4 rounded-lg border border-red-100 bg-red-50 p-4 text-sm font-semibold text-red-700">{leadError}</p> : null}
             <div className="mt-5 grid gap-3">
               {firebaseMode && leads.length ? (
-                leads.slice(0, 8).map((lead) => (
+                leads.map((lead) => (
                   <div
                     key={lead.id}
-                    className="grid gap-2 rounded-lg border border-line bg-canvas p-4 text-sm md:grid-cols-[1fr_1fr_1fr]"
+                    className="grid gap-3 rounded-lg border border-line bg-canvas p-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_auto] md:items-center"
                   >
-                    <span className="font-semibold text-ink">{lead.name || "Unnamed lead"}</span>
+                    <div>
+                      <span className="block font-semibold text-ink">{lead.name || "Unnamed lead"}</span>
+                      <span className="mt-1 block text-xs text-muted">{formatLeadDate(lead.createdAt || lead.submittedAt)}</span>
+                    </div>
                     <span className="text-muted">{lead.email || "No email"}</span>
                     <span className="text-muted">{lead.program || "No program"} / {lead.level || "No level"}</span>
+                    <select
+                      aria-label={`Status for ${lead.name || "lead"}`}
+                      value={lead.status || "new"}
+                      onChange={(event) => handleLeadStatus(lead.id, event.target.value)}
+                      className="min-h-10 rounded-lg border border-line bg-white px-3 text-sm font-semibold text-olive outline-none focus:border-olive focus:ring-4 focus:ring-olive/15"
+                    >
+                      <option value="new">New</option>
+                      <option value="contacted">Contacted</option>
+                      <option value="qualified">Qualified</option>
+                      <option value="closed">Closed</option>
+                    </select>
                   </div>
                 ))
               ) : (

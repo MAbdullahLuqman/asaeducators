@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -28,9 +29,13 @@ export default function Navigation() {
           href="/"
           className="flex min-h-12 items-center text-lg font-bold tracking-tight text-olive"
         >
-          <span className="mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-olive text-sm font-bold text-white shadow-button">
-            ASA
-          </span>
+          <Image
+            src="/brand/asa-educators-mark.png"
+            alt="ASA Educators"
+            width={56}
+            height={56}
+            className="mr-3 h-11 w-11 object-contain"
+          />
           Educators
         </Link>
 
@@ -63,7 +68,7 @@ export default function Navigation() {
         </div>
 
         <Link
-          href="/programs#lead-form"
+          href="/lead-form"
           className="hidden min-h-12 items-center rounded-full bg-olive px-6 text-sm font-semibold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98] md:inline-flex"
         >
           Book Consultation
@@ -94,9 +99,13 @@ export default function Navigation() {
                 onClick={() => setOpen(false)}
                 className="flex min-h-12 items-center text-lg font-bold text-olive"
               >
-                <span className="mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-olive text-sm font-bold text-white">
-                  ASA
-                </span>
+                <Image
+                  src="/brand/asa-educators-mark.png"
+                  alt="ASA Educators"
+                  width={56}
+                  height={56}
+                  className="mr-3 h-11 w-11 object-contain"
+                />
                 Educators
               </Link>
               <button
@@ -126,7 +135,7 @@ export default function Navigation() {
                 </motion.div>
               ))}
               <Link
-                href="/programs#lead-form"
+                href="/lead-form"
                 onClick={() => setOpen(false)}
                 className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button"
               >
