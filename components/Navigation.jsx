@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
   { href: "/", label: "Home" },
@@ -21,20 +21,46 @@ export default function Navigation() {
   const pathname = usePathname();
   const [hovered, setHovered] = useState(null);
   const [open, setOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const updateHeaderVisibility = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY.current;
+
+      if (currentScrollY < 80) {
+        setHeaderHidden(false);
+      } else if (Math.abs(currentScrollY - lastScrollY.current) > 8) {
+        setHeaderHidden(scrollingDown);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", updateHeaderVisibility, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeaderVisibility);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-canvas shadow-soft md:bg-canvas/80 md:backdrop-blur-xl">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-canvas shadow-soft transition-transform duration-300 ease-out md:bg-canvas/80 md:backdrop-blur-xl ${
+        headerHidden && !open ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
           className="flex min-h-12 items-center text-lg font-bold tracking-tight text-olive"
         >
           <Image
-            src="/brand/asa-educators-mark.png"
+            src="/brand/asa-educators-header.png"
             alt="ASA Educators"
-            width={56}
-            height={56}
-            className="mr-3 h-11 w-11 object-contain [clip-path:inset(0_0_12%_0)]"
+            width={52}
+            height={60}
+            className="mr-3 h-14 w-12 object-contain"
           />
           Educators
         </Link>
@@ -100,11 +126,11 @@ export default function Navigation() {
                 className="flex min-h-12 items-center text-lg font-bold text-olive"
               >
                 <Image
-                  src="/brand/asa-educators-mark.png"
+                  src="/brand/asa-educators-header.png"
                   alt="ASA Educators"
-                  width={56}
-                  height={56}
-                  className="mr-3 h-11 w-11 object-contain [clip-path:inset(0_0_12%_0)]"
+                  width={52}
+                  height={60}
+                  className="mr-3 h-14 w-12 object-contain"
                 />
                 Educators
               </Link>
