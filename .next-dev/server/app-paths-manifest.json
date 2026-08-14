@@ -1,8 +1,9 @@
 {
-  "/about/page": "app/about/page.js",
-  "/contact-us/page": "app/contact-us/page.js",
-  "/study-pathway/page": "app/study-pathway/page.js",
-  "/courses/page": "app/courses/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/destination/page": "app/destination/page.js",
-  "/page": "app/page.js"
+  "/study-pathway/page": "app/study-pathway/page.js",
+  "/page": "app/page.js",
+  "/lead-form/page": "app/lead-form/page.js",
+  "/destination/[slug]/page": "app/destination/[slug]/page.js",
+  "/icon.png/route": "app/icon.png/route.js"
 }

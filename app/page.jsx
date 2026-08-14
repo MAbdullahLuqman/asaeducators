@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import LeadWizard from "@/components/LeadWizard";
+import { destinations } from "@/lib/destinations";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -20,39 +20,6 @@ const slogans = [
   "Student Recruitment",
   "3,000+ Students Trained for IELTS & PTE",
   "Unlock Global Opportunities"
-];
-
-const destinations = [
-  {
-    country: "Cyprus",
-    image:
-      "https://images.unsplash.com/photo-1603811397408-9197fa02b6be?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    country: "Australia",
-    image:
-      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    country: "UK",
-    image:
-      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    country: "Sweden",
-    image:
-      "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    country: "Malaysia",
-    image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    country: "Turkey",
-    image:
-      "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=900&q=80"
-  }
 ];
 
 const heroImage =
@@ -98,14 +65,22 @@ const pathway = [
 
 export default function HomePage() {
   const [activeSlogan, setActiveSlogan] = useState(0);
+  const [fading, setFading] = useState(false);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setActiveSlogan((index) => (index + 1) % slogans.length),
-      2800
-    );
+    const interval = setInterval(() => {
+      setFading(true);
+      timeoutRef.current = setTimeout(() => {
+        setActiveSlogan((index) => (index + 1) % slogans.length);
+        setFading(false);
+      }, 220);
+    }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   return (
@@ -113,20 +88,13 @@ export default function HomePage() {
       <section className="bg-gray-50">
         <div className="mx-auto grid min-h-[calc(100vh-116px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
           <div className="max-w-2xl">
-            <div className="min-h-[9.5rem] sm:min-h-[8.75rem] lg:min-h-[10.5rem]">
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={slogans[activeSlogan]}
-                  initial={{ y: 22, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -22, opacity: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="text-4xl font-extrabold leading-tight text-[#0B2D57] sm:text-5xl lg:text-6xl"
-                >
-                  {slogans[activeSlogan]}
-                </motion.h1>
-              </AnimatePresence>
-            </div>
+            <h1
+              className={`min-h-[9.5rem] text-4xl font-extrabold leading-tight text-[#0B2D57] transition duration-300 ease-out sm:min-h-[8.75rem] sm:text-5xl lg:min-h-[10.5rem] lg:text-6xl ${
+                fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
+              }`}
+            >
+              {slogans[activeSlogan]}
+            </h1>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-gray-700 sm:text-lg">
               ASA Educators connects ambitious students with world-class
@@ -197,8 +165,9 @@ export default function HomePage() {
 
           <div className="mt-10 flex gap-6 overflow-x-auto pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible">
             {destinations.map((destination) => (
-              <article
+              <Link
                 key={destination.country}
+                href={`/destination/${destination.slug}`}
                 className="group relative h-[360px] min-w-[280px] overflow-hidden rounded-2xl shadow-xl shadow-gray-200/80 sm:min-w-[340px] lg:min-w-0"
               >
                 <Image
@@ -212,7 +181,7 @@ export default function HomePage() {
                 <h3 className="absolute bottom-6 left-6 text-2xl font-extrabold text-white">
                   Study in {destination.country}
                 </h3>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

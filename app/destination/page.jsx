@@ -1,46 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadWizard from "@/components/LeadWizard";
+import { destinations } from "@/lib/destinations";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-
-const destinations = [
-  {
-    country: "Cyprus",
-    image: "https://images.unsplash.com/photo-1603811397408-9197fa02b6be?auto=format&fit=crop&w=900&q=80",
-    copy: "A practical European study option with accessible tuition, English-taught programs, and a student-friendly environment.",
-    points: ["Affordable European route", "Business and hospitality options", "Strong entry point for first-time travellers"]
-  },
-  {
-    country: "Australia",
-    image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=80",
-    copy: "A globally recognised destination for students seeking high-quality education, multicultural campuses, and career-focused programs.",
-    points: ["World-ranked institutions", "Multiple intake options", "Broad course availability"]
-  },
-  {
-    country: "UK",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80",
-    copy: "A strong academic destination for students who want respected qualifications and shorter degree routes.",
-    points: ["One-year master routes", "Historic universities", "Clear academic progression"]
-  },
-  {
-    country: "Sweden",
-    image: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=900&q=80",
-    copy: "A modern education system known for innovation, research, sustainability, and high-quality student life.",
-    points: ["Innovation-led learning", "Research opportunities", "English-taught programs"]
-  },
-  {
-    country: "Malaysia",
-    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=900&q=80",
-    copy: "A cost-effective Asian study destination with international campuses, diverse communities, and accessible living costs.",
-    points: ["Budget-conscious option", "International campuses", "Comfortable student lifestyle"]
-  },
-  {
-    country: "Turkey",
-    image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=900&q=80",
-    copy: "A culturally rich destination with competitive tuition, growing universities, and a wide range of programs.",
-    points: ["Competitive fees", "Scholarship possibilities", "Strong campus culture"]
-  }
-];
 
 export const metadata = {
   title: "Destinations | ASA Educators",
@@ -95,6 +57,12 @@ export default function DestinationPage() {
                     </p>
                   ))}
                 </div>
+                <Link
+                  href={`/destination/${destination.slug}`}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]"
+                >
+                  Explore {destination.country} <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </article>
           ))}

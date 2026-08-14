@@ -9,9 +9,11 @@ import {
   Instagram,
   Linkedin,
   Mail,
+  Menu,
   X,
   Youtube
 } from "lucide-react";
+import { destinations } from "@/lib/destinations";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,7 +62,7 @@ export default function RootLayout({ children }) {
         </div>
 
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white shadow-sm">
-          <nav className="mx-auto flex min-h-20 max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 lg:flex-nowrap lg:px-8">
+          <nav className="relative mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-3 px-4 py-3 lg:gap-6 lg:px-8">
             <Link href="/" aria-label="ASA Educators home" className="shrink-0">
               <Image
                 src="/brand/asa-educators-header.png"
@@ -68,40 +70,99 @@ export default function RootLayout({ children }) {
                 width={190}
                 height={58}
                 priority
-                className="h-14 w-auto object-contain"
+                className="h-12 w-auto object-contain sm:h-14"
               />
             </Link>
 
             <div className="hidden items-center gap-7 text-sm font-semibold text-[#0B2D57] lg:flex">
               {navLinks.map((link) => (
-                <Link
-                  key={link}
-                  href={link === "Home" ? "/" : `/${link.toLowerCase().replaceAll(" ", "-")}`}
-                  className="flex items-center gap-1 transition hover:text-[#D71920]"
-                >
-                  {link}
-                  {link === "Destination" && <ChevronDown className="h-4 w-4" />}
-                </Link>
+                link === "Destination" ? (
+                  <div key={link} className="group relative">
+                    <Link
+                      href="/destination"
+                      className="flex items-center gap-1 transition hover:text-[#D71920]"
+                    >
+                      Destination <ChevronDown className="h-4 w-4" />
+                    </Link>
+                    <div className="invisible absolute left-0 top-full z-50 w-56 translate-y-3 rounded-2xl border border-gray-100 bg-white p-2 opacity-0 shadow-2xl shadow-gray-200/80 transition group-hover:visible group-hover:translate-y-2 group-hover:opacity-100">
+                      {destinations.map((destination) => (
+                        <Link
+                          key={destination.slug}
+                          href={`/destination/${destination.slug}`}
+                          className="block rounded-xl px-4 py-3 font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]"
+                        >
+                          Study in {destination.country}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link}
+                    href={link === "Home" ? "/" : `/${link.toLowerCase().replaceAll(" ", "-")}`}
+                    className="flex items-center gap-1 transition hover:text-[#D71920]"
+                  >
+                    {link}
+                  </Link>
+                )
               ))}
             </div>
 
             <Link
               href="/lead-form"
-              className="rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a]"
+              className="hidden rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a] lg:inline-flex"
             >
               Apply Now
             </Link>
-            <div className="flex w-full gap-5 overflow-x-auto pb-1 text-sm font-semibold text-[#0B2D57] lg:hidden">
-              {navLinks.map((link) => (
-                <Link
-                  key={link}
-                  href={link === "Home" ? "/" : `/${link.toLowerCase().replaceAll(" ", "-")}`}
-                  className="shrink-0 transition hover:text-[#D71920]"
-                >
-                  {link}
-                </Link>
-              ))}
-            </div>
+
+            <details className="group lg:hidden">
+              <summary className="flex h-14 w-14 cursor-pointer list-none items-center justify-center rounded-full border border-gray-200 bg-white text-[#0B2D57] shadow-sm transition hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
+                <Menu className="h-7 w-7" />
+              </summary>
+              <div className="absolute left-4 right-4 top-full z-50 mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-gray-200/80">
+                <div className="grid divide-y divide-gray-100">
+                  {navLinks.map((link) => (
+                    link === "Destination" ? (
+                      <div key={link}>
+                        <Link
+                          href="/destination"
+                          className="block px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]"
+                        >
+                          Destination
+                        </Link>
+                        <div className="grid bg-gray-50 px-5 py-2">
+                          {destinations.map((destination) => (
+                            <Link
+                              key={destination.slug}
+                              href={`/destination/${destination.slug}`}
+                              className="py-2 text-sm font-bold text-gray-600 transition hover:text-[#D71920]"
+                            >
+                              Study in {destination.country}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={link}
+                        href={link === "Home" ? "/" : `/${link.toLowerCase().replaceAll(" ", "-")}`}
+                        className="px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]"
+                      >
+                        {link}
+                      </Link>
+                    )
+                  ))}
+                </div>
+                <div className="border-t border-gray-100 p-4">
+                  <Link
+                    href="/lead-form"
+                    className="flex w-full justify-center rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]"
+                  >
+                    Apply Now
+                  </Link>
+                </div>
+              </div>
+            </details>
           </nav>
         </header>
 
