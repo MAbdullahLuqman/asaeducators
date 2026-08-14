@@ -1,252 +1,181 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { CheckCircle2, Send } from "lucide-react";
 import { useState } from "react";
 
-const spring = { type: "spring", stiffness: 300, damping: 30 };
+const initialValues = {
+  name: "",
+  email: "",
+  phone: "",
+  destination: "Cyprus",
+  level: "Undergraduate",
+  intake: "Upcoming intake",
+  message: ""
+};
 
-const steps = [
-  {
-    label: "Destination",
-    title: "Which study pathway are you planning?",
-    field: "program",
-    options: ["Cyprus Admissions", "Visa Documentation", "Scholarship Guidance", "Pre-Departure"]
-  },
-  {
-    label: "Study Level",
-    title: "What level are you applying for?",
-    field: "level",
-    options: ["Undergraduate", "Postgraduate", "Diploma", "Foundation"]
-  },
-  {
-    label: "Contact",
-    title: "Where should an advisor reach you?",
-    field: "contact",
-    options: []
-  }
-];
+const destinations = ["Cyprus", "Australia", "UK", "Sweden", "Malaysia", "Turkey", "Not sure yet"];
+const levels = ["Undergraduate", "Postgraduate", "Diploma", "Foundation", "IELTS/PTE"];
+const intakes = ["Upcoming intake", "January/February", "May/June", "September/October", "Flexible"];
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 export default function LeadWizard() {
-  const [step, setStep] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+  const [values, setValues] = useState(initialValues);
   const [status, setStatus] = useState("idle");
-  const [storageTarget, setStorageTarget] = useState(null);
-  const [values, setValues] = useState({
-    program: "Cyprus Admissions",
-    level: "Undergraduate",
-    name: "",
-    email: ""
-  });
+  const [stored, setStored] = useState("");
 
-  const current = steps[step];
-  const complete = step === steps.length - 1;
-  const contactReady = values.name.trim().length > 1 && isValidEmail(values.email);
+  const ready =
+    values.name.trim().length > 1 &&
+    isValidEmail(values.email) &&
+    values.phone.trim().length > 6;
 
-  async function handleNext() {
-    if (!complete) {
-      setStep((value) => Math.min(steps.length - 1, value + 1));
-      return;
-    }
+  function update(field, value) {
+    setValues((current) => ({ ...current, [field]: value }));
+  }
 
-    if (!contactReady) {
-      return;
-    }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (!ready) return;
 
     setStatus("submitting");
+    setStored("");
 
     try {
       const { submitLead } = await import("@/lib/leads");
       const result = await submitLead(values);
-      setStorageTarget(result.stored);
-      setSubmitted(true);
+      setStored(result.stored);
+      setStatus("success");
+      setValues(initialValues);
     } catch (error) {
       console.error("Lead submission failed", error);
       setStatus("error");
-    } finally {
-      setStatus("idle");
     }
   }
 
   return (
-    <section id="lead-form" className="bg-canvas py-[clamp(4rem,8vw,7rem)]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+    <section id="lead-form" className="bg-gray-50 py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div>
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
-            Start Your Plan
+          <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+            Free Consultation
           </p>
-          <h2 className="font-serif text-[clamp(2.4rem,5.2vw,4.6rem)] leading-[1]">
-            Start with a clear study abroad plan.
+          <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl">
+            Get a personalised study abroad plan.
           </h2>
-          <p className="mt-7 max-w-xl text-lg leading-8 text-[#5A6374]">
-            Three focused steps give our counselors enough context to recommend
-            the right destination, institution route, and document timeline.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+            Tell us where you want to study, your current education level, and
+            your preferred intake. ASA Educators will review your profile and
+            guide you on universities, documents, tests, and visa preparation.
           </p>
+          <div className="mt-8 grid gap-4 text-sm font-semibold text-[#0B2D57] sm:grid-cols-2">
+            {["Profile assessment", "University shortlist", "Document checklist", "Visa file guidance"].map((item) => (
+              <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm">
+                <CheckCircle2 className="h-5 w-5 text-[#D71920]" />
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-plush sm:p-8">
-          {submitted ? (
-            <div className="flex min-h-[420px] flex-col justify-center">
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold-soft text-olive">
-                <Check size={24} />
-              </div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive">
-                Request received
-              </p>
-              <h3 className="mt-5 text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight text-[#1A1D24]">
-                Your consultation request has been saved.
-              </h3>
-              <p className="mt-5 max-w-xl text-base leading-7 text-[#5A6374]">
-                Our team can now use your pathway interest, study level, name,
-                and email to prepare the first consultation.
-                {storageTarget === "local"
-                  ? " Firebase environment variables are not configured yet, so this copy is saved locally for now."
-                  : null}
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubmitted(false);
-                  setStep(0);
-                  setStorageTarget(null);
-                  setValues({
-                    program: "Cyprus Admissions",
-                    level: "Undergraduate",
-                    name: "",
-                    email: ""
-                  });
-                }}
-                className="mt-8 inline-flex min-h-12 w-fit items-center rounded-full border border-line bg-white px-5 text-sm font-semibold text-olive transition hover:border-olive active:scale-[0.97]"
+        <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-6 shadow-2xl shadow-gray-200/70 sm:p-8">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57]">
+              Full name
+              <input
+                value={values.name}
+                onChange={(event) => update("name", event.target.value)}
+                placeholder="Your name"
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57]">
+              Phone number
+              <input
+                value={values.phone}
+                onChange={(event) => update("phone", event.target.value)}
+                placeholder="+92 300 0000000"
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57] sm:col-span-2">
+              Email address
+              <input
+                type="email"
+                value={values.email}
+                onChange={(event) => update("email", event.target.value)}
+                placeholder="you@example.com"
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57]">
+              Destination
+              <select
+                value={values.destination}
+                onChange={(event) => update("destination", event.target.value)}
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
               >
-                Start another application
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="mb-8 flex gap-2">
-                {steps.map((item, index) => (
-                  <div
-                    key={item.label}
-                    className={`h-2 flex-1 rounded-full ${
-                      index <= step ? "bg-olive" : "bg-[#EEE9DD]"
-                    }`}
-                  />
+                {destinations.map((item) => (
+                  <option key={item}>{item}</option>
                 ))}
-              </div>
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57]">
+              Study level
+              <select
+                value={values.level}
+                onChange={(event) => update("level", event.target.value)}
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              >
+                {levels.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57] sm:col-span-2">
+              Preferred intake
+              <select
+                value={values.intake}
+                onChange={(event) => update("intake", event.target.value)}
+                className="min-h-[52px] rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              >
+                {intakes.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#0B2D57] sm:col-span-2">
+              Message
+              <textarea
+                value={values.message}
+                onChange={(event) => update("message", event.target.value)}
+                placeholder="Tell us about your education, budget, or preferred course."
+                className="min-h-32 rounded-xl border border-gray-200 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-[#D71920] focus:ring-4 focus:ring-red-100"
+              />
+            </label>
+          </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.label}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -24 }}
-                  transition={spring}
-                  className="min-h-[330px]"
-                >
-                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive">
-                    Step {step + 1} / {current.label}
-                  </p>
-                  <h3 className="mt-5 text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight text-[#1A1D24]">
-                    {current.title}
-                  </h3>
+          {status === "success" ? (
+            <p className="mt-5 rounded-xl bg-green-50 p-4 text-sm font-semibold text-green-700">
+              Your request has been saved{stored === "local" ? " locally until Firebase keys are added" : ""}.
+            </p>
+          ) : null}
+          {status === "error" ? (
+            <p className="mt-5 rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-700">
+              Submission failed. Check Firebase keys and Firestore permissions.
+            </p>
+          ) : null}
 
-                  {current.options.length ? (
-                    <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                      {current.options.map((option) => {
-                        const selected = values[current.field] === option;
-                        return (
-                          <button
-                            type="button"
-                            key={option}
-                            onClick={() =>
-                              setValues((previous) => ({
-                                ...previous,
-                                [current.field]: option
-                              }))
-                            }
-                            className={`flex min-h-14 items-center justify-between rounded-xl border px-5 text-left text-base font-semibold transition active:scale-[0.98] ${
-                              selected
-                                ? "border-olive bg-gold-soft text-olive"
-                                : "border-line bg-white text-[#3F4654] hover:border-olive"
-                            }`}
-                          >
-                            {option}
-                            {selected ? <Check size={18} /> : null}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <div className="mt-8 grid gap-4">
-                      <input
-                        aria-label="Full name"
-                        value={values.name}
-                        onChange={(event) =>
-                          setValues((previous) => ({
-                            ...previous,
-                            name: event.target.value
-                          }))
-                        }
-                        placeholder="Full name"
-                        className="min-h-14 rounded-xl border border-line bg-white px-5 text-base font-medium outline-none transition placeholder:text-[#98A1B2] focus:border-olive focus:ring-4 focus:ring-olive/15"
-                      />
-                      <input
-                        aria-label="Email address"
-                        value={values.email}
-                        onChange={(event) =>
-                          setValues((previous) => ({
-                            ...previous,
-                            email: event.target.value
-                          }))
-                        }
-                        placeholder="Email address"
-                        type="email"
-                        className="min-h-14 rounded-xl border border-line bg-white px-5 text-base font-medium outline-none transition placeholder:text-[#98A1B2] focus:border-olive focus:ring-4 focus:ring-olive/15"
-                      />
-                      <div className="rounded-xl bg-canvas p-5 text-sm leading-6 text-[#5A6374]">
-                        Preference: {values.program} / {values.level}
-                      </div>
-                      {status === "error" ? (
-                        <p className="rounded-xl border border-red-100 bg-red-50 p-4 text-sm font-semibold text-red-700">
-                          We could not submit this request. Please check Firebase
-                          configuration or try again.
-                        </p>
-                      ) : null}
-                    </div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="mt-8 flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  onClick={() => setStep((value) => Math.max(0, value - 1))}
-                  disabled={step === 0}
-                  className="inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-semibold text-olive transition active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <ArrowLeft size={18} /> Back
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  disabled={(complete && !contactReady) || status === "submitting"}
-                  className="inline-flex min-h-12 items-center gap-2 rounded-full bg-olive px-6 text-sm font-semibold text-white shadow-button transition hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45"
-                >
-                  {status === "submitting"
-                    ? "Submitting..."
-                    : complete
-                      ? "Submit Interest"
-                      : "Continue"}
-                  {complete ? <Check size={18} /> : <ArrowRight size={18} />}
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+          <button
+            type="submit"
+            disabled={!ready || status === "submitting"}
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#b9141a] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          >
+            {status === "submitting" ? "Submitting..." : "Submit Consultation Request"}
+            <Send className="h-4 w-4" />
+          </button>
+        </form>
       </div>
     </section>
   );
