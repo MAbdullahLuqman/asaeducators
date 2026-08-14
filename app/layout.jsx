@@ -123,43 +123,44 @@ export default function RootLayout({ children }) {
                 <div className="grid divide-y divide-gray-100">
                   {navLinks.map((link) => (
                     link === "Destination" ? (
-                      <div key={link}>
-                        <Link
-                          href="/destination"
-                          className="block px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]"
-                        >
-                          Destination
-                        </Link>
+                      <details key={link} className="group/destination">
+                        <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
+                          <span>Destination</span>
+                          <span className="text-2xl leading-none text-[#D71920] group-open/destination:rotate-45">+</span>
+                        </summary>
                         <div className="grid bg-gray-50 px-5 py-2">
+                          <a href="/destination" className="py-2 text-sm font-bold text-[#0B2D57]">
+                            All Destinations
+                          </a>
                           {destinations.map((destination) => (
-                            <Link
+                            <a
                               key={destination.slug}
                               href={`/destination/${destination.slug}`}
                               className="py-2 text-sm font-bold text-gray-600 transition hover:text-[#D71920]"
                             >
                               Study in {destination.country}
-                            </Link>
+                            </a>
                           ))}
                         </div>
-                      </div>
+                      </details>
                     ) : (
-                      <Link
+                      <a
                         key={link}
                         href={link === "Home" ? "/" : `/${link.toLowerCase().replaceAll(" ", "-")}`}
                         className="px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]"
                       >
                         {link}
-                      </Link>
+                      </a>
                     )
                   ))}
                 </div>
                 <div className="border-t border-gray-100 p-4">
-                  <Link
+                  <a
                     href="/lead-form"
                     className="flex w-full justify-center rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]"
                   >
                     Apply Now
-                  </Link>
+                  </a>
                 </div>
               </div>
             </details>

@@ -88,26 +88,38 @@ export default function HomePage() {
       <section className="bg-gray-50">
         <div className="mx-auto grid min-h-[calc(100vh-116px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
           <div className="max-w-2xl">
-            <h1
-              className={`min-h-[9.5rem] text-4xl font-extrabold leading-tight text-[#0B2D57] transition duration-300 ease-out sm:min-h-[8.75rem] sm:text-5xl lg:min-h-[10.5rem] lg:text-6xl ${
-                fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
-              }`}
-            >
-              {slogans[activeSlogan]}
+            <p className="mb-6 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+              ASA Educators
+            </p>
+            <h1 className="max-w-2xl text-4xl font-extrabold leading-tight text-[#0B2D57] sm:text-5xl lg:text-6xl">
+              Unlock your future with{" "}
+              <span
+                className={`block text-[#D71920] transition duration-300 ease-out ${
+                  fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
+                }`}
+              >
+                {slogans[activeSlogan]}
+              </span>
             </h1>
-
             <p className="mt-6 max-w-xl text-base leading-8 text-gray-700 sm:text-lg">
               ASA Educators connects ambitious students with world-class
               universities through expert counselling, admissions guidance, test
               preparation, and visa support.
             </p>
-
-            <Link
-              href="/lead-form"
-              className="mt-8 inline-flex rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a]"
-            >
-              Apply Now
-            </Link>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/lead-form"
+                className="inline-flex justify-center rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a]"
+              >
+                Apply Now
+              </Link>
+              <Link
+                href="/destination"
+                className="inline-flex justify-center rounded-full border border-gray-200 bg-white px-8 py-4 text-sm font-bold text-[#0B2D57] transition hover:border-[#D71920] hover:text-[#D71920]"
+              >
+                Explore Destinations
+              </Link>
+            </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-xl">

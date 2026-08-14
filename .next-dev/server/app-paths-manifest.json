@@ -1,9 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/destination/page": "app/destination/page.js",
-  "/study-pathway/page": "app/study-pathway/page.js",
-  "/page": "app/page.js",
-  "/lead-form/page": "app/lead-form/page.js",
   "/destination/[slug]/page": "app/destination/[slug]/page.js",
+  "/page": "app/page.js",
+  "/destination/page": "app/destination/page.js",
   "/icon.png/route": "app/icon.png/route.js"
 }
