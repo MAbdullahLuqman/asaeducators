@@ -1,7 +1,8 @@
 {
   "/page": "app/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
   "/destination/[slug]/page": "app/destination/[slug]/page.js",
-  "/courses/page": "app/courses/page.js",
   "/destination/page": "app/destination/page.js",
-  "/study-pathway/page": "app/study-pathway/page.js"
+  "/study-pathway/page": "app/study-pathway/page.js",
+  "/courses/page": "app/courses/page.js"
 }

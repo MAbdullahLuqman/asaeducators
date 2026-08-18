@@ -88,10 +88,10 @@ export default function HomePage() {
       <section className="bg-gray-50">
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:px-8 lg:py-14">
           <div className="max-w-2xl">
-            <p className="mb-4 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9] sm:mb-6">
+            <p className="mb-4 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1B65B9] sm:mb-6">
               ASA Educators
             </p>
-            <h1 className="max-w-2xl text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
+            <h1 className="max-w-2xl text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
               Unlock your future with{" "}
               <span
                 className={`block text-[#D71920] transition duration-300 ease-out ${
