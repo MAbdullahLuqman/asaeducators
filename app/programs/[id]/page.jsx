@@ -52,7 +52,7 @@ export default async function ProgramPage({ params }) {
   };
 
   return (
-    <main className="min-h-screen bg-canvas pt-28">
+    <main className="min-h-screen bg-canvas pt-8 sm:pt-12 lg:pt-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
@@ -61,7 +61,7 @@ export default async function ProgramPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="mx-auto max-w-7xl px-6 pb-16 sm:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <Link
           href="/programs"
           className="mb-8 inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-semibold text-olive shadow-soft transition hover:-translate-y-0.5 hover:border-olive active:scale-[0.98]"
@@ -69,7 +69,7 @@ export default async function ProgramPage({ params }) {
           <ArrowLeft size={18} /> All pathways
         </Link>
         <div className="relative overflow-hidden rounded-[2rem] border border-line bg-white shadow-plush">
-          <div className="relative min-h-[560px] sm:min-h-[520px]">
+          <div className="relative min-h-[360px] sm:min-h-[420px] xl:min-h-[480px]">
             <Image
               src={program.image}
               alt={`${program.title} study abroad pathway`}
@@ -83,10 +83,10 @@ export default async function ProgramPage({ params }) {
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-white">
                 {program.category} / {program.duration}
               </p>
-              <h1 className="max-w-4xl font-serif text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
+              <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
                 {program.title}
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.62)] sm:text-white/90">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.62)] sm:text-lg sm:leading-8 sm:text-white/90">
                 {program.description}
               </p>
             </div>

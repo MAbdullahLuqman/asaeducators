@@ -116,7 +116,7 @@ export default async function SuccessStoriesPage() {
 
   return (
     <main className="min-h-screen bg-canvas">
-      <section className="relative isolate overflow-hidden bg-espresso px-6 pb-20 pt-36 text-white sm:px-8 lg:pb-24">
+      <section className="relative isolate overflow-hidden bg-espresso px-4 py-8 text-white sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_22%,rgba(36,56,41,0.48),transparent_30rem),linear-gradient(135deg,rgba(63,74,47,0.78),rgba(23,26,31,0.98)_52%,rgba(23,26,31,1))]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-canvas to-transparent" />
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-end">
@@ -125,16 +125,16 @@ export default async function SuccessStoriesPage() {
               <ShieldCheck size={16} aria-hidden="true" />
               Verified student outcomes
             </p>
-            <h1 className="max-w-5xl font-serif text-[clamp(2.7rem,6vw,5.8rem)] leading-[1]">
+            <h1 className="max-w-5xl text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
               ASA Educators Success Stories: Your Pathway to Europe
             </h1>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/90">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
               See how we&apos;ve helped ambitious students secure their visas and
               admissions to top institutions in Cyprus for the 2026 intakes.
             </p>
             <Link
               href="/lead-form"
-              className="mt-9 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
+              className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-6 text-sm font-bold text-white shadow-button transition duration-300 hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
             >
               Start Your Application Today
               <ArrowRight size={18} aria-hidden="true" />

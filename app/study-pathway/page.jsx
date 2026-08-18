@@ -48,27 +48,27 @@ export default function StudyPathwayPage() {
   return (
     <main className="bg-white">
       <section className="bg-gray-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-14">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Study Pathway
             </p>
-            <h1 className="mt-3 text-4xl font-extrabold leading-tight text-[#0B2D57] sm:text-5xl">
+            <h1 className="mt-3 text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
               A clear route from counselling to campus.
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
               Study abroad decisions involve deadlines, documents, payments,
               tests, and visa expectations. ASA Educators keeps every step clear
               so students know what to do next.
             </p>
             <Link
               href="#lead-form"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#b9141a]"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#b9141a]"
             >
               Start Your Pathway <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="relative min-h-[430px] overflow-hidden rounded-[2rem] shadow-2xl shadow-gray-200/70">
+          <div className="relative min-h-[300px] overflow-hidden rounded-[2rem] shadow-2xl shadow-gray-200/70 sm:min-h-[400px] xl:min-h-[480px]">
             <Image
               src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=85"
               alt="Students planning university pathway"

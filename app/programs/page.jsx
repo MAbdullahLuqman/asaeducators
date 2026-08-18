@@ -39,20 +39,20 @@ export default async function ProgramsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-canvas pt-24">
+    <main className="min-h-screen bg-canvas">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
           Study Pathways
         </p>
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <h1 className="max-w-4xl font-serif text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1] text-ink">
+          <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
             Premium guidance from first shortlist to final arrival.
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-[#5A6374]">
+          <p className="max-w-2xl text-base leading-7 text-[#5A6374] sm:text-lg sm:leading-8">
             Each pathway combines counselor expertise, document discipline,
             deadline control, and family-ready communication.
           </p>

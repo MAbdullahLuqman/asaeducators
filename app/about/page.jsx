@@ -1,7 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 import LeadWizard from "@/components/LeadWizard";
-import { ArrowRight, ClipboardCheck, Globe2, UsersRound } from "lucide-react";
+import {
+  BadgeCheck,
+  BookOpenCheck,
+  ClipboardCheck,
+  Handshake,
+  Lightbulb,
+  ShieldCheck
+} from "lucide-react";
 
 export const metadata = {
   title: "About ASA Educators"
@@ -9,132 +15,159 @@ export const metadata = {
 
 const values = [
   {
+    icon: BookOpenCheck,
+    title: "Practice Makes Perfect",
+    copy:
+      "Experience has taught us that preparation is everything. ASA Educators refines each step of the application process, from choosing universities to preparing statements, scholarship files, and visa documents."
+  },
+  {
+    icon: Lightbulb,
+    title: "Lucidity",
+    copy:
+      "We believe in clarity at every turn. Students receive simple explanations of entry requirements, deadlines, scholarship criteria, and document expectations before they make decisions."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Devoted",
+    copy:
+      "Your goals become our goals. Our counselors listen first, understand your ambitions and constraints, then build a practical roadmap for your success."
+  },
+  {
+    icon: Handshake,
+    title: "Global Partners",
+    copy:
+      "ASA Educators works with trusted education routes across Cyprus, the UK, Australia, Sweden, Malaysia, Turkey, and more, giving students reliable options and smoother admissions planning."
+  },
+  {
     icon: ClipboardCheck,
-    title: "Evidence first",
+    title: "Astute Team",
     copy:
-      "Every recommendation is tied to academic history, budget, destination logic, deadlines, and document readiness."
+      "Our team includes education counselors, application reviewers, English test trainers, and visa file specialists who review every case carefully."
   },
   {
-    icon: Globe2,
-    title: "Destination aware",
+    icon: BadgeCheck,
+    title: "Ever Lasting Accord",
     copy:
-      "Advice changes by country, institution, intake, visa expectation, and long-term student pathway."
-  },
-  {
-    icon: UsersRound,
-    title: "One coordinated team",
-    copy:
-      "Counselors, application reviewers, and documentation specialists work from one shared plan."
+      "Our commitment does not end when an application is submitted. We guide students through offers, visa readiness, pre-departure steps, and future planning."
   }
-];
-
-const process = [
-  "Profile review and destination fit",
-  "Institution shortlist and intake strategy",
-  "Admissions documents and offer tracking",
-  "Visa file review and pre-departure readiness"
 ];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-canvas">
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-32 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-        <div>
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
-            About ASA Educators
-          </p>
-          <h1 className="max-w-4xl font-serif text-[clamp(2.5rem,5.5vw,4.8rem)] leading-[1] text-[#1A1D24]">
-            Study abroad guidance built on precision, trust, and follow-through.
+    <main className="bg-white">
+      <section className="relative min-h-[250px] overflow-hidden bg-[#061120]">
+        <Image
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85"
+          alt="About ASA Educators"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-55"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/30" />
+        <div className="relative mx-auto flex min-h-[250px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold leading-tight drop-shadow-lg sm:text-5xl">
+            About Us
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#5A6374]">
-            ASA Educators helps students move from uncertainty to a clear,
-            evidence-led plan for admissions, documentation, visas, and arrival.
+          <p className="mt-4 text-sm font-bold text-white/85">
+            Home <span className="mx-2">•</span> About Us
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/programs"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-olive px-6 text-sm font-semibold text-white shadow-button transition hover:-translate-y-0.5 hover:bg-olive-dark active:scale-[0.98]"
-            >
-              Explore pathways <ArrowRight size={18} />
-            </Link>
-            <Link
-              href="#lead-form"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-white px-6 text-sm font-semibold text-olive shadow-soft transition hover:border-olive active:scale-[0.97]"
-            >
-              Start a consultation
-            </Link>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+              About Us
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold leading-tight text-[#071326] sm:text-4xl">
+              Study Abroad Consultants
+            </h2>
+            <p className="mt-5 text-base leading-8 text-gray-600">
+              Education is a driving force that develops reflective thinking,
+              practical ability, and confidence. ASA Educators exists to help
+              students make informed decisions about international education
+              through careful counseling, test preparation, admissions planning,
+              and visa document guidance.
+            </p>
+            <p className="mt-4 text-base leading-8 text-gray-600">
+              We provide expert guidance on educational pathways, universities,
+              scholarships, and application requirements so students can access
+              study options that match their ambitions.
+            </p>
+          </div>
+          <div className="relative mx-auto aspect-[4/3] w-full max-w-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1000&q=85"
+              alt="Student using laptop for study planning"
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="rounded-2xl object-cover"
+            />
           </div>
         </div>
+      </section>
 
-        <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-white bg-white shadow-plush">
-          <Image
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=86"
-            alt="Students discussing international education options"
-            fill
-            priority
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/10 to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/80 bg-ivory p-5 shadow-[0_16px_36px_rgba(0,0,0,0.24)]">
-            <p className="text-4xl font-semibold text-olive">2,400+</p>
-            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-muted">
-              students advised
+      <section className="pb-16 sm:pb-20 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="relative aspect-[3/4] w-[72%] overflow-hidden rounded-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=85"
+                alt="International student on campus"
+                fill
+                sizes="(min-width: 1024px) 32vw, 80vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute bottom-[-24px] right-0 aspect-[16/9] w-[58%] overflow-hidden rounded-lg bg-[#E9A51A] p-3 shadow-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=700&q=85"
+                alt="Students holding books"
+                fill
+                sizes="(min-width: 1024px) 28vw, 60vw"
+                className="object-cover opacity-90"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-extrabold leading-tight text-[#071326] sm:text-4xl">
+              Why Choose ASA Educators?
+            </h2>
+            <p className="mt-5 text-base leading-8 text-gray-600">
+              We stand out because our counseling is specific, honest, and
+              practical. Instead of giving every student the same answer, we
+              review academics, budget, destination fit, English requirements,
+              and long-term goals before recommending a route.
+            </p>
+            <p className="mt-4 text-base leading-8 text-gray-600">
+              From first consultation to offer tracking and visa readiness, ASA
+              Educators keeps students and families updated with clear steps and
+              realistic expectations.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-20 sm:px-8">
-        <div className="grid gap-5 md:grid-cols-3">
-          {values.map((value) => {
-            const Icon = value.icon;
-            return (
-              <article
-                key={value.title}
-                className="rounded-2xl border border-gray-100 bg-white p-7 shadow-soft"
-              >
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-soft text-olive">
-                  <Icon size={22} />
-                </div>
-                <h2 className="text-2xl font-semibold tracking-[-0.03em]">
-                  {value.title}
-                </h2>
-                <p className="mt-4 leading-7 text-[#5A6374]">{value.copy}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 pb-24 sm:px-8 lg:grid-cols-[0.85fr_1.15fr]">
-        <div>
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
-            How We Work
-          </p>
-          <h2 className="font-serif text-[clamp(2.2rem,4.5vw,4rem)] leading-[1]">
-            A simple workflow for complex study decisions.
-          </h2>
-        </div>
-        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-soft sm:p-8">
-          <div className="grid gap-4">
-            {process.map((item, index) => (
-              <div
-                key={item}
-                className="flex gap-4 rounded-xl bg-canvas p-5"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-olive text-sm font-semibold text-white">
-                  {index + 1}
-                </span>
-                <div>
-                  <p className="font-semibold text-[#1A1D24]">{item}</p>
-                  <p className="mt-2 text-sm leading-6 text-[#5A6374]">
-                    Each step ends with a visible checklist so students know
-                    what is complete, pending, and blocking the next milestone.
-                  </p>
-                </div>
-              </div>
-            ))}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <article key={value.title} className="grid gap-5 sm:grid-cols-[48px_1fr]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#F1F4FF] text-[#1B65B9]">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-[#071326]">{value.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-gray-600">{value.copy}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

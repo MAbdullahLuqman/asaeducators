@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import DestinationCard from "@/components/DestinationCard";
 import LeadWizard from "@/components/LeadWizard";
 import { destinations } from "@/lib/destinations";
 import {
@@ -17,13 +18,13 @@ import {
 } from "lucide-react";
 
 const slogans = [
-  "Student Recruitment",
   "3,000+ Students Trained for IELTS & PTE",
-  "Unlock Global Opportunities"
+  "End-to-End Student Recruitment & University Admissions",
+  "1:1 Profile Evaluation & Visa File Guidance"
 ];
 
 const heroImage =
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85";
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85";
 
 const stats = [
   ["3,000+", "students trained for IELTS & PTE"],
@@ -56,11 +57,12 @@ const services = [
 ];
 
 const pathway = [
-  "Free profile assessment",
-  "Destination and course shortlist",
-  "Application and offer management",
-  "Visa file preparation",
-  "Interview and pre-departure briefing"
+  "Profile Assessment",
+  "Destination and course shortlisting",
+  "Test Prep",
+  "Application tracking",
+  "Visa Documentation",
+  "Pre-departure briefing"
 ];
 
 export default function HomePage() {
@@ -85,63 +87,91 @@ export default function HomePage() {
 
   return (
     <main className="bg-white">
-      <section className="bg-gray-50">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:px-8 lg:py-14">
-          <div className="max-w-2xl">
-            <p className="mb-4 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1B65B9] sm:mb-6">
+      <section className="bg-[#F8F7F1]">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-2 lg:px-8 lg:py-12">
+          <div className="relative z-10 max-w-2xl">
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               ASA Educators
             </p>
-            <h1 className="max-w-2xl text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
-              Unlock your future with{" "}
-              <span
-                className={`block text-[#D71920] transition duration-300 ease-out ${
-                  fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
-                }`}
-              >
-                {slogans[activeSlogan]}
-              </span>
+            <h1 className="mt-4 max-w-2xl text-4xl font-extrabold leading-[1.05] text-[#071326] sm:text-5xl lg:text-6xl">
+              Keep your study abroad plan on track
+              <span className="mt-2 block h-2 w-44 rounded-full bg-[#F8B21B]" />
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-7 text-gray-700 sm:mt-5 sm:text-lg sm:leading-8">
-              ASA Educators connects ambitious students with world-class
-              universities through expert counselling, admissions guidance, test
-              preparation, and visa support.
+            <p
+              className={`mt-5 max-w-xl text-base font-semibold leading-7 text-gray-600 transition duration-300 ease-out sm:text-lg ${
+                fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
+              }`}
+            >
+              {slogans[activeSlogan]}
             </p>
-            <div className="mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <p className="mt-3 max-w-xl text-base leading-7 text-gray-600">
+              Counseling, admissions, English test preparation, and visa
+              guidance for students who want clear next steps.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/lead-form"
-                className="inline-flex justify-center rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a]"
+                className="inline-flex justify-center rounded-xl bg-[#F8A900] px-8 py-4 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#e29900]"
               >
                 Apply Now
               </Link>
               <Link
                 href="/destination"
-                className="inline-flex justify-center rounded-full border border-gray-200 bg-white px-8 py-4 text-sm font-bold text-[#0B2D57] transition hover:border-[#D71920] hover:text-[#D71920]"
+                className="inline-flex justify-center rounded-xl border border-gray-200 bg-white px-8 py-4 text-sm font-extrabold text-[#0B2D57] transition hover:border-[#1B65B9] hover:text-[#1B65B9]"
               >
                 Explore Destinations
               </Link>
             </div>
-          </div>
 
-          <div className="relative mx-auto w-full max-w-xl">
-            <div className="absolute inset-0 rounded-full bg-white/80 blur-2xl" />
-            <div className="relative h-[300px] overflow-hidden rounded-[2rem] shadow-2xl shadow-gray-200/70 sm:h-[400px] xl:h-[480px]">
-              <Image
-                src={heroImage}
-                alt="Students planning study abroad applications"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                priority
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2D57]/65 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/95 p-5 shadow-lg">
-                <p className="text-3xl font-extrabold text-[#D71920]">3,000+</p>
-                <p className="mt-1 text-sm font-semibold text-[#0B2D57]">
-                  IELTS, PTE and admissions students trained
-                </p>
+            <div className="mt-8 grid max-w-xl gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-bold text-gray-500">Best guidance</p>
+                <p className="mt-1 text-2xl font-extrabold text-[#071326]">1:1 profile review</p>
+              </div>
+              <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-bold text-gray-500">Students trained</p>
+                <p className="mt-1 text-2xl font-extrabold text-[#071326]">3,000+</p>
               </div>
             </div>
           </div>
+
+          <div className="relative rounded-[2rem] bg-[#24887E] p-4 sm:p-6">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white shadow-2xl shadow-gray-200/70">
+              <Image
+                src={heroImage}
+                alt="Student ready for international education"
+                fill
+                sizes="(min-width: 1024px) 52vw, 100vw"
+                priority
+                className="object-cover object-center"
+              />
+            </div>
+            <div className="mt-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-xl sm:absolute sm:bottom-8 sm:left-0 sm:max-w-[270px]">
+              <p className="text-sm font-bold text-gray-500">Trusted support</p>
+              <p className="mt-2 text-xl font-extrabold leading-tight text-[#071326]">
+                Transforming students into confident applicants
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:items-center">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#1B65B9]">
+              Agency Overview
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl">
+              A counseling office built for clear decisions.
+            </h2>
+          </div>
+          <p className="text-lg leading-8 text-gray-600">
+            ASA Educators works with students and families from profile evaluation to
+            English test preparation, university admissions, visa documentation, and
+            pre-departure planning. The process is designed around practical advice,
+            visible checklists, and destination-specific guidance.
+          </p>
         </div>
       </section>
 
@@ -177,23 +207,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination) => (
-              <Link
-                key={destination.country}
-                href={`/destination/${destination.slug}`}
-                className="group relative h-[360px] overflow-hidden rounded-2xl shadow-xl shadow-gray-200/80"
-              >
-                <Image
-                  src={destination.image}
-                  alt={`${destination.country} destination`}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, 340px"
-                  className="object-cover transition duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                <h3 className="absolute bottom-6 left-6 text-2xl font-extrabold text-white">
-                  Study in {destination.country}
-                </h3>
-              </Link>
+              <DestinationCard key={destination.slug} destination={destination} />
             ))}
           </div>
         </div>

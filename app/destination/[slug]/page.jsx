@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadWizard from "@/components/LeadWizard";
+import RequirementTable from "@/components/RequirementTable";
 import { destinations, getDestination } from "@/lib/destinations";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BookOpenCheck, BriefcaseBusiness, CheckCircle2, FileCheck2, GraduationCap, Handshake, Search } from "lucide-react";
 
 export function generateStaticParams() {
   return destinations.map((destination) => ({ slug: destination.slug }));
@@ -35,21 +36,27 @@ export default function DestinationDetailPage({ params }) {
     ["Find Universities and Courses", "Compare realistic options by entry rules, tuition, and intake availability."],
     ["Apply and Receive Offers", "Submit applications and track offers, deposits, and next documents."]
   ];
-  const admissions = destination.admissions || [
-    "Academic transcripts and certificates for the selected study level.",
-    "Passport, photographs, and identity documents.",
-    "English language evidence where required by the institution.",
-    "Financial and sponsor documents for visa preparation."
-  ];
-  const universities = destination.universities || destination.programs.map((program) => `${program} pathway institutions`);
+  const requirements = destination.requirements || [];
+  const universities = destination.universities || [];
+  const whyDetails = destination.whyDetails || destination.why.map((item) => [item, destination.copy]);
   const work = destination.work || [
     "Work rules vary by country, city, institution, and visa category.",
     "ASA reviews current expectations with students before final program selection."
   ];
+  const applicationProcess = destination.applicationProcess || [
+    "Confirm study level, budget, intake, and English evidence.",
+    "Shortlist universities and courses by entry requirements and fees.",
+    "Prepare academic, identity, financial, and application documents.",
+    "Submit applications and track offer conditions.",
+    "Prepare visa documents and pre-departure steps."
+  ];
+  const workPermit = destination.workPermit || work.map((item) => ["Career planning", item]);
+  const compassIcons = [Handshake, Search, FileCheck2];
+  const serviceIcons = [BriefcaseBusiness, FileCheck2, GraduationCap];
 
   return (
     <main className="bg-white">
-      <section className="relative min-h-[430px] overflow-hidden bg-[#061120]">
+      <section className="relative min-h-[260px] overflow-hidden bg-[#061120]">
         <Image
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85"
           alt={`Study in ${destination.country}`}
@@ -59,8 +66,8 @@ export default function DestinationDetailPage({ params }) {
           className="object-cover object-center opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/40" />
-        <div className="relative mx-auto flex min-h-[430px] max-w-7xl flex-col items-center justify-center px-4 pt-10 text-center text-white sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-extrabold leading-tight drop-shadow-lg sm:text-6xl">
+        <div className="relative mx-auto flex min-h-[260px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold leading-tight drop-shadow-lg sm:text-5xl">
             Study In {destination.country}
           </h1>
           <p className="mt-5 text-lg font-bold text-white/85">
@@ -100,102 +107,150 @@ export default function DestinationDetailPage({ params }) {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16 sm:py-20 lg:py-24">
+      <section className="bg-white py-14 sm:py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-          {services.map(([title, copy], index) => (
-            <article key={title} className="rounded-2xl bg-white p-7 shadow-xl shadow-gray-200/70">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D71920] text-lg font-extrabold text-white">
+          {services.map(([title, copy], index) => {
+            const Icon = serviceIcons[index] || FileCheck2;
+            return (
+            <article key={title} className="relative min-h-[330px] rounded-xl border border-gray-200 bg-white p-7 shadow-xl shadow-gray-200/80 transition hover:-translate-y-1 hover:shadow-2xl">
+              <span className="absolute right-7 top-5 text-5xl font-bold text-gray-100">
                 {index + 1}
               </span>
-              <h2 className="mt-6 text-2xl font-extrabold text-[#0B2D57]">{title}</h2>
-              <p className="mt-4 leading-7 text-gray-600">{copy}</p>
+              <div className="mb-10 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-[#1B65B9]">
+                <Icon className="h-7 w-7" />
+              </div>
+              <h2 className="text-lg font-bold text-[#071326]">{title}</h2>
+              <p className="mt-4 text-sm leading-7 text-gray-600">{copy}</p>
             </article>
-          ))}
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold leading-tight text-[#071326] sm:text-4xl">
+              Let Us Be Your Compass in the World of Immigration
+            </h2>
+            <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+              We have in-depth knowledge of the complex immigration systems,
+              regulations, and student admission processes for {destination.country}.
+            </p>
+          </div>
+
+          <div className="relative mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
+            <div className="pointer-events-none absolute left-[18%] right-[18%] top-10 hidden border-t-2 border-dashed border-gray-300 md:block" />
+            {compass.map(([title, copy], index) => {
+              const Icon = compassIcons[index] || Handshake;
+              return (
+              <article key={title} className="relative rounded-2xl border border-gray-100 bg-white px-6 pb-7 pt-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#5DB7E8] text-white shadow-lg shadow-blue-100">
+                  <Icon className="h-9 w-9" />
+                </div>
+                <h3 className="mt-6 text-xl font-bold text-[#071326]">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-gray-600">{copy}</p>
+              </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
-                Student Roadmap
-              </p>
-              <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
-                Let ASA be your compass from counselling to offer letter.
-              </h2>
-            </div>
-            <p className="text-lg leading-8 text-gray-600">
-              The process stays practical: choose the right course, prepare the right file, and keep every deadline visible.
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold leading-tight text-[#071326] sm:text-4xl">
+              Why Study in {destination.country}?
+            </h2>
+            <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg">
+              {destination.copy} ASA Educators helps students compare this destination
+              by quality of education, affordability, English-taught routes, visa
+              readiness, and long-term career planning.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {compass.map(([title, copy]) => (
-              <article key={title} className="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm">
-                <CheckCircle2 className="h-9 w-9 text-[#D71920]" />
-                <h3 className="mt-5 text-xl font-extrabold text-[#0B2D57]">{title}</h3>
-                <p className="mt-3 leading-7 text-gray-600">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0B2D57] py-16 text-white sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
-                Why {destination.country}?
-              </p>
-              <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
-                A strong destination when it fits your academic profile and budget.
-              </h2>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {destination.why.map((item) => (
-                <div key={item} className="rounded-2xl bg-white/10 p-5 font-semibold text-white/90">
-                  {item}
-                </div>
+          <div className="mt-10 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div className="grid border-b border-gray-200 text-center text-xs font-bold text-gray-500 sm:grid-cols-4">
+              {[
+                ["Why Cyprus?", BookOpenCheck],
+                ["Admission Requirements", FileCheck2],
+                ["Top Universities", GraduationCap],
+                ["Post Study Work", BriefcaseBusiness]
+              ].map(([label, Icon], index) => (
+                <a
+                  key={label}
+                  href={index === 0 ? "#why" : index === 1 ? "#admission-requirements" : index === 2 ? "#top-universities" : "#post-study-work"}
+                  className={`flex min-h-16 items-center justify-center gap-2 border-b border-gray-100 px-3 transition hover:bg-gray-50 hover:text-[#D71920] sm:border-b-0 sm:border-r last:sm:border-r-0 ${
+                    index === 0 ? "text-[#1B65B9]" : ""
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                  {label}
+                </a>
               ))}
             </div>
+
+            <div id="why" className="p-6 sm:p-8">
+              <div className="grid gap-5 md:grid-cols-2">
+                {whyDetails.map(([title, copy]) => (
+                  <article key={title}>
+                    <h3 className="text-lg font-bold text-[#071326]">{title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-gray-600">{copy}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+      <section id="admission-requirements" className="bg-gray-50 py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#1B65B9]">
               Admission Requirements
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
-              Documents students should prepare before applying.
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl">
+              What international students should prepare.
             </h2>
-            <div className="mt-8 grid gap-4">
-              {admissions.map((item) => (
-                <p key={item} className="flex gap-3 rounded-2xl bg-gray-50 p-5 font-bold text-[#0B2D57]">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#D71920]" />
+          </div>
+          <RequirementTable rows={requirements} />
+          <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="text-xl font-bold text-[#071326]">Application Process</h3>
+            <div className="mt-5 grid gap-3">
+              {applicationProcess.map((item, index) => (
+                <p key={item} className="flex gap-3 text-sm font-semibold leading-7 text-gray-700">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D71920] text-xs font-bold text-white">
+                    {index + 1}
+                  </span>
                   {item}
                 </p>
               ))}
             </div>
           </div>
-          <div>
+        </div>
+      </section>
+
+      <section id="top-universities" className="bg-[#E8EEF5] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-3xl">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
-              Top Universities
+              University Admissions
             </p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
-              Institutions students commonly compare.
+              Application support for trusted university routes in {destination.country}.
             </h2>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {universities.map((university) => (
-                <span key={university} className="rounded-full bg-gray-50 px-5 py-3 text-sm font-bold text-[#0B2D57] shadow-sm">
-                  {university}
-                </span>
-              ))}
-            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {universities.map((university) => (
+              <div
+                key={university.name}
+                className="flex min-h-[104px] items-center rounded-2xl border border-gray-300 bg-[#F7F3E8] px-6 py-5 text-lg font-extrabold leading-tight text-[#071326] shadow-sm transition hover:-translate-y-0.5 hover:border-[#1B65B9]/35 hover:shadow-md sm:text-xl"
+              >
+                {university.name}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -220,19 +275,47 @@ export default function DestinationDetailPage({ params }) {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section id="post-study-work" className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl rounded-2xl bg-[#071326] px-6 py-10 text-white sm:px-8 lg:px-10">
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
             Work and Career Planning
           </p>
           <h2 className="mt-3 max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl">
-            Plan study choices with the next step in mind.
+            Post-study work visa and career opportunities.
           </h2>
+          <p className="mt-5 max-w-4xl text-lg leading-8 text-white/80">
+            {destination.postStudy}
+          </p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {work.map((item) => (
-              <p key={item} className="rounded-2xl bg-white/10 p-5 font-semibold leading-7 text-white/85">
-                {item}
-              </p>
+            {workPermit.map(([title, copy]) => (
+              <article key={title} className="rounded-2xl bg-white/10 p-5">
+                <h3 className="font-bold text-white">{title}</h3>
+                <p className="mt-2 text-sm font-semibold leading-7 text-white/80">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div>
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+              FAQ
+            </p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+              Questions about studying in {destination.country}.
+            </h2>
+            <Link href="#lead-form" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]">
+              Get Free Assessment <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4">
+            {(destination.faqs || []).map(([question, answer]) => (
+              <article key={question} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-bold text-[#0B2D57]">{question}</h3>
+                <p className="mt-3 leading-7 text-gray-600">{answer}</p>
+              </article>
             ))}
           </div>
         </div>

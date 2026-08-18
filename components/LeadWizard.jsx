@@ -21,7 +21,7 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-export default function LeadWizard() {
+export default function LeadWizard({ compact = false }) {
   const [values, setValues] = useState(initialValues);
   const [status, setStatus] = useState("idle");
   const [stored, setStored] = useState("");
@@ -55,9 +55,9 @@ export default function LeadWizard() {
   }
 
   return (
-    <section id="lead-form" className="bg-gray-50 py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-        <div>
+    <section id="lead-form" className={compact ? "bg-white py-8" : "bg-gray-50 py-16 sm:py-20 lg:py-24"}>
+      <div className={`mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:px-8 ${compact ? "" : "lg:grid-cols-[0.9fr_1.1fr]"}`}>
+        <div className={compact ? "hidden" : ""}>
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
             Free Consultation
           </p>
@@ -79,7 +79,7 @@ export default function LeadWizard() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-6 shadow-2xl shadow-gray-200/70 sm:p-8">
+        <form onSubmit={handleSubmit} className={compact ? "rounded-2xl bg-white p-2 sm:p-4" : "rounded-2xl bg-white p-6 shadow-2xl shadow-gray-200/70 sm:p-8"}>
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="grid gap-2 text-sm font-bold text-[#0B2D57]">
               Full name

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LeadWizard from "@/components/LeadWizard";
-import { universities } from "@/lib/universities";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -62,22 +61,22 @@ export default function CoursesPage() {
   return (
     <main className="bg-white">
       <section className="bg-gray-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-14">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Courses
             </p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-extrabold leading-tight text-[#0B2D57] sm:text-5xl">
+            <h1 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
               Training that prepares students for global study.
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
               ASA Educators combines IELTS, PTE, and admissions counselling so
               students prepare for tests with a clear destination, course, and
               intake plan in mind.
             </p>
             <Link
               href="#lead-form"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#b9141a]"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#b9141a]"
             >
               Join a Course <ArrowRight className="h-4 w-4" />
             </Link>
@@ -124,26 +123,6 @@ export default function CoursesPage() {
                 </article>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#E8EEF5] py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
-              University Admissions
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
-              Application support for trusted university routes.
-            </h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {universities.map((university) => (
-              <div key={university} className="rounded-2xl border border-gray-300 bg-[#F7F3E8] px-6 py-5 text-lg font-extrabold text-[#071326]">
-                {university}
-              </div>
-            ))}
           </div>
         </div>
       </section>
