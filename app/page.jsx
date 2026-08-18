@@ -24,7 +24,7 @@ const slogans = [
 ];
 
 const heroImage =
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85";
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85";
 
 const stats = [
   ["3,000+", "students trained for IELTS & PTE"],
@@ -95,7 +95,7 @@ export default function HomePage() {
             </p>
             <h1 className="mt-4 max-w-2xl text-4xl font-extrabold leading-[1.05] text-[#071326] sm:text-5xl lg:text-6xl">
               Keep your study abroad plan on track
-              <span className="mt-2 block h-2 w-44 rounded-full bg-[#F8B21B]" />
+              <span className="mt-2 block h-2 w-44 rounded-full bg-[#D71920]" />
             </h1>
             <p
               className={`mt-5 max-w-xl text-base font-semibold leading-7 text-gray-600 transition duration-300 ease-out sm:text-lg ${
@@ -111,7 +111,7 @@ export default function HomePage() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/lead-form"
-                className="inline-flex justify-center rounded-xl bg-[#F8A900] px-8 py-4 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#e29900]"
+                className="inline-flex justify-center rounded-xl bg-[#D71920] px-8 py-4 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#b9141a]"
               >
                 Apply Now
               </Link>
