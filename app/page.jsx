@@ -86,12 +86,12 @@ export default function HomePage() {
   return (
     <main className="bg-white">
       <section className="bg-gray-50">
-        <div className="mx-auto grid min-h-[calc(100vh-116px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:px-8 lg:py-14">
           <div className="max-w-2xl">
-            <p className="mb-6 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+            <p className="mb-4 w-fit rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9] sm:mb-6">
               ASA Educators
             </p>
-            <h1 className="max-w-2xl text-4xl font-extrabold leading-tight text-[#0B2D57] sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-2xl text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
               Unlock your future with{" "}
               <span
                 className={`block text-[#D71920] transition duration-300 ease-out ${
@@ -101,12 +101,12 @@ export default function HomePage() {
                 {slogans[activeSlogan]}
               </span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-gray-700 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-7 text-gray-700 sm:mt-5 sm:text-lg sm:leading-8">
               ASA Educators connects ambitious students with world-class
               universities through expert counselling, admissions guidance, test
               preparation, and visa support.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <Link
                 href="/lead-form"
                 className="inline-flex justify-center rounded-full bg-[#D71920] px-8 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[#b9141a]"
@@ -123,8 +123,8 @@ export default function HomePage() {
           </div>
 
           <div className="relative mx-auto w-full max-w-xl">
-            <div className="absolute -inset-6 rounded-full bg-white/80 blur-2xl" />
-            <div className="relative h-[420px] overflow-hidden rounded-[2rem] shadow-2xl shadow-gray-200/70 sm:h-[520px]">
+            <div className="absolute inset-0 rounded-full bg-white/80 blur-2xl" />
+            <div className="relative h-[300px] overflow-hidden rounded-[2rem] shadow-2xl shadow-gray-200/70 sm:h-[400px] xl:h-[480px]">
               <Image
                 src={heroImage}
                 alt="Students planning study abroad applications"
@@ -175,12 +175,12 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-10 flex gap-6 overflow-x-auto pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination) => (
               <Link
                 key={destination.country}
                 href={`/destination/${destination.slug}`}
-                className="group relative h-[360px] min-w-[280px] overflow-hidden rounded-2xl shadow-xl shadow-gray-200/80 sm:min-w-[340px] lg:min-w-0"
+                className="group relative h-[360px] overflow-hidden rounded-2xl shadow-xl shadow-gray-200/80"
               >
                 <Image
                   src={destination.image}

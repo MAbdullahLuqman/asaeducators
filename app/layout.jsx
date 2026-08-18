@@ -116,11 +116,11 @@ export default function RootLayout({ children }) {
               Apply Now
             </Link>
 
-            <details className="group lg:hidden">
+            <details className="mobile-menu group lg:hidden">
               <summary className="flex h-14 w-14 cursor-pointer list-none items-center justify-center rounded-full border border-gray-200 bg-white text-[#0B2D57] shadow-sm transition hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
                 <Menu className="h-7 w-7" />
               </summary>
-              <div className="absolute left-4 right-4 top-full z-50 mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-gray-200/80">
+              <div className="mobile-menu-panel fixed left-4 right-4 top-[6rem] z-50 mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-gray-200/80">
                 <div className="grid divide-y divide-gray-100">
                   {navLinks.map((link) => (
                     link === "Destination" ? (

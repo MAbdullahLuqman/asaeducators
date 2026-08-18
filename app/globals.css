@@ -4,10 +4,16 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  overflow-x: hidden;
+  width: 100%;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 18% 12%, rgba(215, 25, 32, 0.08), transparent 28rem),
     radial-gradient(circle at 82% 18%, rgba(11, 45, 87, 0.08), transparent 24rem),
@@ -31,5 +37,9 @@ body {
 }
 
 .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-menu:not([open]) .mobile-menu-panel {
   display: none;
 }
