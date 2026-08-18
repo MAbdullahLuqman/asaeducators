@@ -1,6 +1,7 @@
 {
+  "/courses/page": "app/courses/page.js",
+  "/destination/page": "app/destination/page.js",
   "/destination/[slug]/page": "app/destination/[slug]/page.js",
   "/page": "app/page.js",
-  "/destination/page": "app/destination/page.js",
-  "/icon.png/route": "app/icon.png/route.js"
+  "/study-pathway/page": "app/study-pathway/page.js"
 }

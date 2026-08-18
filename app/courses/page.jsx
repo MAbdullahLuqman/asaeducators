@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LeadWizard from "@/components/LeadWizard";
+import { universities } from "@/lib/universities";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -13,24 +14,35 @@ import {
 const courses = [
   {
     icon: BookOpenCheck,
-    title: "IELTS Preparation",
+    title: "IELTS Preparation Course",
+    duration: "2 months",
     copy:
-      "Structured training for listening, reading, writing, and speaking with score-focused practice and feedback.",
-    points: ["Band target planning", "Mock tests", "Writing correction"]
+      "Intensive training across listening, reading, writing, and speaking with strategies, practice materials, and personalised feedback.",
+    points: ["Band target planning", "Full mock tests", "Writing correction", "Speaking practice"]
   },
   {
     icon: GraduationCap,
-    title: "PTE Preparation",
+    title: "PTE Preparation Course",
+    duration: "1 month",
     copy:
-      "Computer-based test preparation covering speaking fluency, pronunciation, writing templates, and timed practice.",
-    points: ["Speaking drills", "Score strategy", "Timed modules"]
+      "Focused preparation for PTE Academic covering speaking, writing, listening, and reading so students can pursue goals with confidence.",
+    points: ["Speaking fluency", "Template practice", "Timed modules", "Score strategy"]
   },
   {
-    icon: FileCheck2,
-    title: "Admissions Counselling",
+    icon: Mic,
+    title: "LanguageCert",
+    duration: "2 weeks",
     copy:
-      "Course, university, intake, and document guidance for students applying to international institutions.",
-    points: ["Profile review", "Shortlisting", "Application plan"]
+      "Specialized speaking-focused preparation with one-on-one sessions and authentic practice materials.",
+    points: ["Interview confidence", "Pronunciation drills", "Live feedback", "Test format guidance"]
+  },
+  {
+    icon: PenLine,
+    title: "Oxford ELLT",
+    duration: "2 weeks",
+    copy:
+      "Tutor-led preparation for the Oxford English Language Level Test with practical support for speaking performance.",
+    points: ["Speaking portion", "Question practice", "Tutor review", "Fast readiness plan"]
   }
 ];
 
@@ -73,9 +85,9 @@ export default function CoursesPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               ["3,000+", "students trained"],
-              ["IELTS", "academic and general support"],
-              ["PTE", "computer-based test practice"],
-              ["1:1", "admissions guidance"]
+              ["4", "English test routes"],
+              ["1:1", "speaking feedback"],
+              ["A-Z", "test and admission planning"]
             ].map(([value, label]) => (
               <div key={label} className="rounded-2xl bg-white p-6 shadow-xl shadow-gray-200/70">
                 <p className="text-4xl font-extrabold text-[#D71920]">{value}</p>
@@ -88,14 +100,19 @@ export default function CoursesPage() {
 
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {courses.map((course) => {
               const Icon = course.icon;
               return (
-                <article key={course.title} className="rounded-2xl bg-gray-50 p-7 shadow-sm">
-                  <Icon className="h-10 w-10 text-[#D71920]" />
-                  <h2 className="mt-6 text-2xl font-extrabold text-[#0B2D57]">{course.title}</h2>
-                  <p className="mt-4 leading-7 text-gray-600">{course.copy}</p>
+                <article key={course.title} className="rounded-3xl border border-gray-200 bg-[#F7F3E8] p-7 shadow-sm">
+                  <div className="flex items-start justify-between gap-4">
+                    <Icon className="h-10 w-10 text-[#D71920]" />
+                    <span className="rounded-full bg-[#D7DEE8] px-4 py-2 text-sm font-extrabold text-[#071326]">
+                      {course.duration}
+                    </span>
+                  </div>
+                  <h2 className="mt-6 text-3xl font-extrabold text-[#071326]">{course.title}</h2>
+                  <p className="mt-6 text-lg leading-8 text-gray-700">{course.copy}</p>
                   <div className="mt-6 grid gap-3">
                     {course.points.map((point) => (
                       <p key={point} className="flex items-center gap-3 font-semibold text-[#0B2D57]">
@@ -111,15 +128,38 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      <section className="bg-[#E8EEF5] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-3xl">
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+              University Admissions
+            </p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+              Application support for trusted university routes.
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {universities.map((university) => (
+              <div key={university} className="rounded-2xl border border-gray-300 bg-[#F7F3E8] px-6 py-5 text-lg font-extrabold text-[#071326]">
+                {university}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gray-50 py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
-              Training Format
+              Test Preparation
             </p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
-              Practical classes built around test performance and admissions deadlines.
+              Practical classes built around test performance and admission deadlines.
             </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Students can prepare for a full English test route or choose a short speaking-focused track when the university accepts it.
+            </p>
           </div>
           <div className="grid gap-5">
             {features.map(([title, copy], index) => (

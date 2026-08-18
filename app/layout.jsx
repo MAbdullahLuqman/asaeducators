@@ -21,9 +21,10 @@ const inter = Inter({
   display: "swap"
 });
 
-const navLinks = ["Home", "Courses", "Destination", "Study Pathway", "Blog", "About", "Contact Us"];
+const navLinks = ["Home", "Courses", "University", "Destination", "Study Pathway", "Blog", "About", "Contact Us"];
 const footerLinks = [
   ["Courses", "/courses"],
+  ["University", "/university"],
   ["Destination", "/destination"],
   ["Study Pathway", "/study-pathway"],
   ["Blog", "/blog"],
