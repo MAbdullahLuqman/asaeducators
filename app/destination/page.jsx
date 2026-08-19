@@ -18,7 +18,7 @@ export default function DestinationPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Favourite Destination
             </p>
-            <h1 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
+            <h1 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
               Popular Destinations For International Students
             </h1>
           </div>

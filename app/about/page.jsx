@@ -66,7 +66,7 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/30" />
         <div className="relative mx-auto flex min-h-[250px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold leading-tight drop-shadow-lg sm:text-5xl">
+          <h1 className="text-3xl font-bold leading-tight drop-shadow-lg sm:text-[2.75rem]">
             About Us
           </h1>
           <p className="mt-4 text-sm font-bold text-white/85">

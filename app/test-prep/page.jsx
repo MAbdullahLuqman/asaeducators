@@ -17,7 +17,7 @@ export default function TestPrepPage() {
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/70">
             ASA College of English
           </p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
+          <h1 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
             English test preparation connected to your admission plan.
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">

@@ -93,7 +93,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               ASA Educators
             </p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-extrabold leading-[1.05] text-[#071326] sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.08] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
               Keep your study abroad plan on track
               <span className="mt-2 block h-2 w-44 rounded-full bg-[#D71920]" />
             </h1>
@@ -195,7 +195,7 @@ export default function HomePage() {
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
                 Favourite Destination
               </p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
                 Popular Destinations For International Students
               </h2>
             </div>
@@ -219,7 +219,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               What We Do
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
               Complete guidance for every stage of your study abroad journey.
             </h2>
           </div>
@@ -260,7 +260,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Study Pathway
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
               A practical process students and parents can follow.
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -292,7 +292,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
               Why ASA Educators
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl lg:text-[3.15rem]">
               Advice that protects your time, money, and application chances.
             </h2>
           </div>

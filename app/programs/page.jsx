@@ -49,7 +49,7 @@ export default async function ProgramsPage() {
           Study Pathways
         </p>
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
+          <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
             Premium guidance from first shortlist to final arrival.
           </h1>
           <p className="max-w-2xl text-base leading-7 text-[#5A6374] sm:text-lg sm:leading-8">

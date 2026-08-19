@@ -22,7 +22,7 @@ export default function ContactPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Contact Us
             </p>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-5xl xl:text-[3.35rem]">
+            <h1 className="mt-3 text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
               Talk to ASA Educators about your next step.
             </h1>
             <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
