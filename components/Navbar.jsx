@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Clock, Mail, Menu } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, Clock, Mail, Menu, X } from "lucide-react";
 import { destinations } from "@/lib/destinations";
 
 const beforeDestination = [
@@ -16,6 +19,9 @@ const afterDestination = [
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const closeMenu = () => setOpen(false);
+
   return (
     <>
       <div className="border-b border-gray-100 bg-white text-xs text-gray-500">
@@ -83,41 +89,86 @@ export default function Navbar() {
             Apply Now
           </Link>
 
-          <details className="mobile-menu group xl:hidden">
-            <summary className="flex h-14 w-14 cursor-pointer list-none items-center justify-center rounded-full border border-gray-200 bg-white text-[#0B2D57] shadow-sm transition hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
-              <Menu className="h-7 w-7" />
-            </summary>
-            <div className="mobile-menu-panel fixed left-4 right-4 top-[6rem] z-50 mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-gray-200/80">
-              <div className="grid divide-y divide-gray-100">
-                {beforeDestination.map(([label, href]) => (
-                  <a key={href} href={href} className="px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]">
-                    {label}
-                  </a>
-                ))}
-                <details className="group/destination">
-                  <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
-                    <span>Destinations</span>
-                    <span className="text-2xl leading-none text-[#D71920] group-open/destination:rotate-45">+</span>
-                  </summary>
-                  <div className="grid bg-gray-50 px-5 py-2">
-                    <a href="/destination" className="py-2 text-sm font-bold text-[#0B2D57]">
-                      All Destinations
-                    </a>
-                    {destinations.map((destination) => (
-                      <a key={destination.slug} href={`/destination/${destination.slug}`} className="py-2 text-sm font-bold text-gray-600 transition hover:text-[#D71920]">
-                        Study in {destination.country}
-                      </a>
+          <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-red-100 bg-white text-[#D71920] shadow-sm ring-8 ring-red-50 transition hover:bg-red-50 xl:hidden"
+          >
+            <Menu className="h-7 w-7" />
+          </button>
+
+          {open ? (
+            <div className="fixed inset-0 z-50 bg-[#071326]/55 backdrop-blur-sm xl:hidden">
+              <button
+                type="button"
+                aria-label="Close menu backdrop"
+                className="absolute inset-0 cursor-default"
+                onClick={closeMenu}
+              />
+              <div className="absolute inset-x-4 top-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-black/25">
+                <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+                  <Image
+                    src="/brand/asa-educators-header.png"
+                    alt="ASA Educators"
+                    width={140}
+                    height={44}
+                    className="h-12 w-auto object-contain"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    onClick={closeMenu}
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-[#D71920] transition hover:bg-red-100"
+                  >
+                    <X className="h-7 w-7" />
+                  </button>
+                </div>
+
+                <div className="max-h-[calc(100svh-8rem)] overflow-y-auto">
+                  <div className="grid divide-y divide-gray-100">
+                    {beforeDestination.map(([label, href]) => (
+                      <Link key={href} href={href} onClick={closeMenu} className="px-6 py-5 text-lg font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]">
+                        {label}
+                      </Link>
+                    ))}
+                    <details className="group/destination">
+                      <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5 text-lg font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920] [&::-webkit-details-marker]:hidden">
+                        <span>Destinations</span>
+                        <span className="text-3xl leading-none text-[#D71920] transition group-open/destination:rotate-45">+</span>
+                      </summary>
+                      <div className="grid bg-gray-50 px-6 py-3">
+                        <Link href="/destination" onClick={closeMenu} className="py-3 text-base font-bold text-[#0B2D57]">
+                          All Destinations
+                        </Link>
+                        {destinations.map((destination) => (
+                          <Link key={destination.slug} href={`/destination/${destination.slug}`} onClick={closeMenu} className="py-3 text-sm font-bold text-gray-600 transition hover:text-[#D71920]">
+                            Study in {destination.country}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                    {afterDestination.map(([label, href]) => (
+                      <Link key={href} href={href} onClick={closeMenu} className="px-6 py-5 text-lg font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]">
+                        {label}
+                      </Link>
                     ))}
                   </div>
-                </details>
-                {afterDestination.map(([label, href]) => (
-                  <a key={href} href={href} className="px-5 py-4 text-base font-bold text-[#0B2D57] transition hover:bg-gray-50 hover:text-[#D71920]">
-                    {label}
-                  </a>
-                ))}
+                  <div className="border-t border-gray-100 p-5">
+                    <Link
+                      href="/lead-form"
+                      onClick={closeMenu}
+                      className="flex min-h-12 items-center justify-center rounded-xl bg-[#D71920] px-6 text-sm font-extrabold text-white transition hover:bg-[#b9141a]"
+                    >
+                      Apply Now
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
-          </details>
+          ) : null}
+
         </nav>
       </header>
     </>

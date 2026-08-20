@@ -98,7 +98,7 @@ export default function HomePage() {
               <span className="mt-2 block h-2 w-44 rounded-full bg-[#D71920]" />
             </h1>
             <p
-              className={`mt-5 max-w-xl text-base font-semibold leading-7 text-gray-600 transition duration-300 ease-out sm:text-lg ${
+              className={`mt-5 max-w-xl text-base font-semibold leading-7 text-[#1B65B9] transition duration-300 ease-out sm:text-lg ${
                 fading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
               }`}
             >
