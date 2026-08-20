@@ -62,7 +62,7 @@ export default async function BlogPostPage({ params }) {
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/75">
             {post.category}
           </p>
-          <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight sm:text-[2.75rem] lg:text-[3.15rem]">
+          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-[1.08] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
             {post.title}
           </h1>
           <p className="mt-4 text-sm font-bold text-white/80">{formatDate(post.date)} / {post.readTime}</p>

@@ -154,7 +154,7 @@ export default function Navigation() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="flex min-h-16 items-center border-b border-line font-serif text-[clamp(2rem,9vw,3.5rem)] leading-none text-ink"
+                    className="flex min-h-16 items-center border-b border-line text-[clamp(2rem,9vw,3.5rem)] leading-none text-ink"
                   >
                     {link.label}
                   </Link>

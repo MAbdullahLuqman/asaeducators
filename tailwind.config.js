@@ -34,8 +34,7 @@ module.exports = {
         "error-soft": "#FDE8E5"
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
-        serif: ["var(--font-playfair)", "Georgia", "serif"]
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"]
       },
       boxShadow: {
         plush: "0 28px 80px rgba(23, 26, 31, 0.09)",

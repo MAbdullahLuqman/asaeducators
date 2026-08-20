@@ -47,14 +47,15 @@ export const metadata = {
 export default function StudyPathwayPage() {
   return (
     <main className="bg-white">
-      <section className="bg-gray-50">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-14">
+      <section className="asa-page-hero">
+        <div className="asa-page-hero-inner">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Study Pathway
             </p>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="asa-page-title">
               A clear route from counselling to campus.
+              <span className="asa-title-bar" />
             </h1>
             <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
               Study abroad decisions involve deadlines, documents, payments,

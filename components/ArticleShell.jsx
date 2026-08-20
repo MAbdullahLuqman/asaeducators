@@ -12,7 +12,7 @@ export default function ArticleShell({ eyebrow, title, excerpt, children }) {
       <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
         {eyebrow}
       </p>
-      <h1 className="font-serif text-[clamp(2.25rem,5.2vw,4.4rem)] leading-[1] text-[#1A1D24]">
+      <h1 className="text-[clamp(2.25rem,5.2vw,4.4rem)] leading-[1] text-[#1A1D24]">
         {title}
       </h1>
       <p className="mt-8 text-[clamp(1.05rem,1.7vw,1.24rem)] leading-8 text-[#5A6374]">

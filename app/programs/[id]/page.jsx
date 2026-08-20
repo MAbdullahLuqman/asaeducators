@@ -83,7 +83,7 @@ export default async function ProgramPage({ params }) {
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-white">
                 {program.category} / {program.duration}
               </p>
-              <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)] sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
+              <h1 className="max-w-4xl text-4xl font-bold leading-[1.08] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
                 {program.title}
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.62)] sm:text-lg sm:leading-8 sm:text-white/90">

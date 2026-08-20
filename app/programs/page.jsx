@@ -44,14 +44,17 @@ export default async function ProgramsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
-        <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
-          Study Pathways
-        </p>
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <h1 className="max-w-4xl text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[3.15rem] xl:text-[3.25rem]">
-            Premium guidance from first shortlist to final arrival.
-          </h1>
+      <section className="asa-page-hero">
+        <div className="asa-page-hero-inner">
+          <div>
+            <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+              Study Pathways
+            </p>
+            <h1 className="asa-page-title">
+              Premium guidance from first shortlist to final arrival.
+              <span className="asa-title-bar" />
+            </h1>
+          </div>
           <p className="max-w-2xl text-base leading-7 text-[#5A6374] sm:text-lg sm:leading-8">
             Each pathway combines counselor expertise, document discipline,
             deadline control, and family-ready communication.

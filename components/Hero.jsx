@@ -65,7 +65,7 @@ export default function Hero() {
 
         <div className="relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-start px-6 pb-8 pt-12 sm:min-h-[calc(100vh-7rem)] sm:justify-end sm:p-9 lg:p-12 lg:pr-[31rem] xl:pr-[35rem]">
           <div className="max-w-[42rem] pb-2 sm:pb-2 lg:max-w-[58rem] lg:pb-6">
-            <h1 className="max-w-[21rem] font-serif text-[clamp(2.65rem,12.5vw,4.4rem)] font-semibold leading-[0.94] text-white sm:max-w-[42rem] sm:text-[clamp(3.2rem,7.4vw,5.7rem)] sm:leading-[0.95] sm:text-canvas lg:max-w-none lg:text-[clamp(4rem,5.8vw,6.15rem)] xl:text-[clamp(4.4rem,5.6vw,6.4rem)]">
+            <h1 className="max-w-[21rem] text-[clamp(2.65rem,12.5vw,4.4rem)] font-semibold leading-[0.94] text-white sm:max-w-[42rem] sm:text-[clamp(3.2rem,7.4vw,5.7rem)] sm:leading-[0.95] sm:text-canvas lg:max-w-none lg:text-[clamp(4rem,5.8vw,6.15rem)] xl:text-[clamp(4.4rem,5.6vw,6.4rem)]">
               Your trusted pathway to study in Europe.
             </h1>
           </div>

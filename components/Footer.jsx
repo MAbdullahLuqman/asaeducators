@@ -5,7 +5,6 @@ const footerLinks = [
   ["Courses", "/courses"],
   ["Destinations", "/destination"],
   ["Study Pathway", "/study-pathway"],
-  ["Test Prep", "/test-prep"],
   ["Blog & Resources", "/blog"],
   ["About Us", "/about"],
   ["Contact Us", "/contact-us"]

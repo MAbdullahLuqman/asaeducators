@@ -48,7 +48,7 @@ export default function ProgramOverview() {
           <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
             Study Pathways
           </p>
-          <h2 className="font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[1] text-ink">
+          <h2 className="text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[1] text-ink">
             Every major step from first shortlist to final arrival.
           </h2>
         </div>
@@ -71,7 +71,7 @@ export default function ProgramOverview() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/50 to-espresso/10" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/90 to-transparent p-6 sm:p-8">
-                <h3 className="font-serif text-[clamp(2rem,4vw,3.4rem)] leading-none text-white">
+                <h3 className="text-[clamp(2rem,4vw,3.4rem)] leading-none text-white">
                   {program.name}
                 </h3>
               </div>

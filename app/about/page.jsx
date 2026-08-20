@@ -55,23 +55,15 @@ const values = [
 export default function AboutPage() {
   return (
     <main className="bg-white">
-      <section className="relative min-h-[250px] overflow-hidden bg-[#061120]">
-        <Image
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85"
-          alt="About ASA Educators"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-55"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/30" />
-        <div className="relative mx-auto flex min-h-[250px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight drop-shadow-lg sm:text-[2.75rem]">
-            About Us
-          </h1>
-          <p className="mt-4 text-sm font-bold text-white/85">
-            Home <span className="mx-2">•</span> About Us
+      <section className="asa-page-hero">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+          <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
+            ASA Educators
           </p>
+          <h1 className="asa-page-title">
+            About Us
+            <span className="asa-title-bar" />
+          </h1>
         </div>
       </section>
 

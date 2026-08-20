@@ -67,7 +67,7 @@ export default function DestinationDetailPage({ params }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/40" />
         <div className="relative mx-auto flex min-h-[260px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight drop-shadow-lg sm:text-[2.75rem]">
+          <h1 className="text-4xl font-bold leading-[1.08] drop-shadow-lg sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
             Study In {destination.country}
           </h1>
           <p className="mt-5 text-lg font-bold text-white/85">
@@ -79,8 +79,9 @@ export default function DestinationDetailPage({ params }) {
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:items-center">
           <div>
-            <h2 className="text-3xl font-bold leading-tight text-[#071326] sm:text-[2.75rem]">
+            <h2 className="text-4xl font-bold leading-[1.08] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
               Study In {destination.country}
+              <span className="asa-title-bar" />
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               {destination.intro}
