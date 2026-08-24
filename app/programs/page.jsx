@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadWizard from "@/components/LeadWizard";
 import { getPrograms } from "@/lib/content";
+import { jsonLd } from "@/lib/jsonLd";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata = {
@@ -42,7 +43,7 @@ export default async function ProgramsPage() {
     <main className="min-h-screen bg-canvas">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }}
       />
       <section className="asa-page-hero">
         <div className="asa-page-hero-inner">

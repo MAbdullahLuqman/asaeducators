@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadWizard from "@/components/LeadWizard";
 import { getProgram, getPrograms } from "@/lib/content";
+import { jsonLd } from "@/lib/jsonLd";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -55,11 +56,11 @@ export default async function ProgramPage({ params }) {
     <main className="min-h-screen bg-canvas pt-8 sm:pt-12 lg:pt-14">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(courseSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }}
       />
       <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <Link
