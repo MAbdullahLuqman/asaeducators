@@ -5,6 +5,7 @@ import {
   FilePlus2,
   CheckCircle2,
   Database,
+  Download,
   Edit3,
   FileText,
   GraduationCap,
@@ -61,6 +62,12 @@ const contentTabs = [
     label: "Settings",
     icon: ShieldCheck,
     description: "Organization, contact, and location settings prepared for API expansion."
+  },
+  {
+    key: "leads",
+    label: "Leads",
+    icon: Mail,
+    description: "Frontend consultation requests saved in Firestore."
   }
 ];
 
@@ -151,7 +158,19 @@ function writeLocalGroup(groupKey, items) {
   window.localStorage.setItem(storageKey(groupKey), formatJson(items));
 }
 
+function readLocalLeads() {
+  try {
+    return JSON.parse(window.localStorage.getItem("asaeducators:leads") || "[]").map((lead, index) => ({
+      id: `local-${index}`,
+      ...lead
+    }));
+  } catch {
+    return [];
+  }
+}
+
 export default function AdminDashboard() {
+  const [mounted, setMounted] = useState(false);
   const [activeKey, setActiveKey] = useState("stats");
   const [user, setUser] = useState(null);
   const [authReady, setAuthReady] = useState(!isFirebaseConfigured || !auth);
@@ -178,6 +197,10 @@ export default function AdminDashboard() {
   );
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (!authRequired) {
       setAuthReady(true);
       return undefined;
@@ -191,6 +214,11 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     async function loadGroup() {
+      if (activeKey === "leads") {
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       setError("");
       setMessage("");
@@ -209,8 +237,12 @@ export default function AdminDashboard() {
         setItems(nextItems);
         setDraft(formatJson(nextItems));
         setSelectedIndex(0);
-      } catch (loadError) {
-        setError(loadError.message || "Unable to load this content group.");
+      } catch {
+        const fallback = editableContentGroups[activeKey] || [];
+        setItems(fallback);
+        setDraft(formatJson(fallback));
+        setSelectedIndex(0);
+        setMessage("Firebase is unreachable, showing bundled defaults.");
       } finally {
         setLoading(false);
       }
@@ -227,11 +259,14 @@ export default function AdminDashboard() {
     setLeadLoading(true);
     setLeadError("");
     try {
-      const snapshot = await getDocs(query(collection(db, "leads"), orderBy("createdAt", "desc")));
+      const snapshot = await Promise.race([
+        getDocs(query(collection(db, "leads"), orderBy("createdAt", "desc"))),
+        new Promise((_, reject) => window.setTimeout(() => reject(new Error("timeout")), 8000))
+      ]);
       setLeads(snapshot.docs.map((leadDoc) => ({ id: leadDoc.id, ...leadDoc.data() })));
     } catch {
-      setLeads([]);
-      setLeadError("Unable to load leads. Check Firestore permissions and the createdAt index.");
+      setLeads(readLocalLeads());
+      setLeadError("Unable to load Firebase leads. Showing local backup leads from this browser.");
     } finally {
       setLeadLoading(false);
     }
@@ -342,7 +377,7 @@ export default function AdminDashboard() {
   }
 
   async function handleLeadStatus(leadId, status) {
-    if (!firebaseMode) return;
+    if (!firebaseMode || leadId.startsWith("local-")) return;
     setLeadError("");
     try {
       await updateDoc(doc(db, "leads", leadId), { status, updatedAt: serverTimestamp() });
@@ -352,6 +387,36 @@ export default function AdminDashboard() {
     } catch {
       setLeadError("Unable to update this lead. Check Firestore permissions.");
     }
+  }
+
+  function saveAllLeads() {
+    if (!leads.length) return;
+
+    const columns = [
+      ["Name", (lead) => lead.name],
+      ["Email", (lead) => lead.email],
+      ["Phone", (lead) => lead.phone],
+      ["Destination", (lead) => lead.destination],
+      ["Level", (lead) => lead.level],
+      ["Intake", (lead) => lead.intake],
+      ["Message", (lead) => lead.message],
+      ["Status", (lead) => lead.status],
+      ["Submitted", (lead) => formatLeadDate(lead.createdAt || lead.submittedAt)]
+    ];
+    const csv = [
+      columns.map(([label]) => label).join(","),
+      ...leads.map((lead) =>
+        columns
+          .map(([, read]) => `"${String(read(lead) || "").replaceAll('"', '""')}"`)
+          .join(",")
+      )
+    ].join("\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `asa-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
   function resetDraft() {
@@ -406,7 +471,7 @@ export default function AdminDashboard() {
     setSelectedIndex(Math.max(0, selectedIndex - 1));
   }
 
-  if (!authReady) {
+  if (!mounted || !authReady) {
     return (
       <main className="min-h-screen bg-[#F4F6F1] px-6 pt-32 text-ink">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-olive">
@@ -464,10 +529,10 @@ export default function AdminDashboard() {
               ASA Admin
             </p>
             <h1 className="text-[clamp(2rem,4vw,3.5rem)] font-semibold tracking-[-0.05em]">
-              Content operations
+              Admin operations
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-              Manage the six core content groups that feed the public site. Firebase is used when configured; local mode keeps the dashboard usable during setup.
+              Manage site content and frontend consultation requests. Firebase is used when configured; local mode keeps the dashboard usable during setup.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -511,12 +576,13 @@ export default function AdminDashboard() {
             })}
           </div>
           <div className="mt-4 rounded-md bg-canvas p-4 text-xs leading-5 text-muted">
-            API-ready shape: every tab saves an array to `adminContent/{activeKey}`.
+            Content saves to `adminContent`; leads load from `leads`.
           </div>
         </aside>
 
         <div className="grid gap-6">
-          <section className="rounded-lg border border-line bg-white p-6 shadow-soft">
+          {activeKey !== "leads" ? (
+            <section className="rounded-lg border border-line bg-white p-6 shadow-soft">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-olive">
@@ -544,6 +610,23 @@ export default function AdminDashboard() {
                 </button>
               </div>
             </div>
+
+            {activeKey === "siteSettings" && authRequired ? (
+              <div className="mt-6 flex flex-col gap-3 rounded-lg border border-line bg-canvas p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-ink">Admin session</p>
+                  <p className="mt-1 text-sm leading-6 text-muted">{user?.email || "Signed in"}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => signOut(auth)}
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-olive transition hover:border-olive"
+                >
+                  <LogOut size={16} />
+                  Sign out
+                </button>
+              </div>
+            ) : null}
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <div className="rounded-lg bg-canvas p-4">
@@ -727,9 +810,11 @@ export default function AdminDashboard() {
                 aria-label={`${activeTab.label} JSON editor`}
               />
             </details>
-          </section>
+            </section>
+          ) : null}
 
-          <section className="rounded-lg border border-line bg-white p-6 shadow-soft">
+          {activeKey === "leads" ? (
+            <section className="rounded-lg border border-line bg-white p-6 shadow-soft">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-olive">
@@ -743,15 +828,26 @@ export default function AdminDashboard() {
               </span>
             </div>
             {firebaseMode ? (
-              <button
-                type="button"
-                onClick={loadLeads}
-                disabled={leadLoading}
-                className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-olive transition hover:border-olive disabled:opacity-50"
-              >
-                <RefreshCw size={16} className={leadLoading ? "animate-spin" : ""} />
-                Refresh leads
-              </button>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={loadLeads}
+                  disabled={leadLoading}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-olive transition hover:border-olive disabled:opacity-50"
+                >
+                  <RefreshCw size={16} className={leadLoading ? "animate-spin" : ""} />
+                  Refresh leads
+                </button>
+                <button
+                  type="button"
+                  onClick={saveAllLeads}
+                  disabled={!leads.length}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-full bg-olive px-4 text-sm font-semibold text-white transition hover:bg-olive-dark disabled:opacity-50"
+                >
+                  <Download size={16} />
+                  Save all leads
+                </button>
+              </div>
             ) : null}
             {leadError ? <p className="mt-4 rounded-lg border border-red-100 bg-red-50 p-4 text-sm font-semibold text-red-700">{leadError}</p> : null}
             <div className="mt-5 grid gap-3">
@@ -759,14 +855,15 @@ export default function AdminDashboard() {
                 leads.map((lead) => (
                   <div
                     key={lead.id}
-                    className="grid gap-3 rounded-lg border border-line bg-canvas p-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_auto] md:items-center"
+                    className="grid gap-3 rounded-lg border border-line bg-canvas p-4 text-sm md:grid-cols-[1.1fr_1fr_1fr_1fr_auto] md:items-center"
                   >
                     <div>
                       <span className="block font-semibold text-ink">{lead.name || "Unnamed lead"}</span>
                       <span className="mt-1 block text-xs text-muted">{formatLeadDate(lead.createdAt || lead.submittedAt)}</span>
                     </div>
                     <span className="text-muted">{lead.email || "No email"}</span>
-                    <span className="text-muted">{lead.program || "No program"} / {lead.level || "No level"}</span>
+                    <span className="text-muted">{lead.phone || "No phone"}</span>
+                    <span className="text-muted">{lead.destination || "No destination"} / {lead.level || "No level"}</span>
                     <select
                       aria-label={`Status for ${lead.name || "lead"}`}
                       value={lead.status || "new"}
@@ -786,7 +883,8 @@ export default function AdminDashboard() {
                 </p>
               )}
             </div>
-          </section>
+            </section>
+          ) : null}
         </div>
       </section>
     </main>

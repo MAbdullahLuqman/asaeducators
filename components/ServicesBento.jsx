@@ -77,7 +77,7 @@ export default function ServicesBento() {
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive-soft">
                 Services
               </p>
-              <h2 className="max-w-3xl text-[clamp(2.4rem,5.2vw,4.6rem)] leading-[1] text-white">
+              <h2 className="max-w-3xl text-[clamp(2.4rem,5.2vw,4.6rem)] leading-[1.12] text-white">
                 A complete advisory system around every applicant.
               </h2>
             </div>

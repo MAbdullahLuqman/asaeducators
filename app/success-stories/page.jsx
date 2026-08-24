@@ -125,7 +125,7 @@ export default async function SuccessStoriesPage() {
               <ShieldCheck size={16} aria-hidden="true" />
               Verified student outcomes
             </p>
-            <h1 className="max-w-5xl text-4xl font-bold leading-[1.08] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="max-w-5xl text-4xl font-bold leading-[1.14] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
               ASA Educators Success Stories: Your Pathway to Europe
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
@@ -161,7 +161,7 @@ export default async function SuccessStoriesPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <h2 className="text-[clamp(2.3rem,4.8vw,4.4rem)] leading-[1] text-[#1A1D24]">
+          <h2 className="text-[clamp(2.3rem,4.8vw,4.4rem)] leading-[1.12] text-[#1A1D24]">
             Recent Visa Approvals: Spring 2026 Intake
           </h2>
           <p className="max-w-2xl text-lg leading-8 text-[#5A6374]">
@@ -186,7 +186,7 @@ export default async function SuccessStoriesPage() {
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.26em] text-olive">
               Institution Spotlight
             </p>
-            <h2 className="text-[clamp(2.3rem,4.8vw,4.2rem)] leading-[1] text-[#1A1D24]">
+            <h2 className="text-[clamp(2.3rem,4.8vw,4.2rem)] leading-[1.12] text-[#1A1D24]">
               Top Destinations in Cyprus
             </h2>
           </div>

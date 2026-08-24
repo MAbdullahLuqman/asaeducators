@@ -93,7 +93,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               ASA Educators
             </p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.08] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.14] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
               Keep your study abroad plan on track
               <span className="mt-2 block h-2 w-44 rounded-full bg-[#D71920]" />
             </h1>
