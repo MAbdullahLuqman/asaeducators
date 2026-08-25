@@ -292,7 +292,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
               Why ASA Educators
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl lg:text-[3.15rem]">
+            <h2 className="mt-3 text-3xl font-bold leading-[1.18] sm:text-4xl lg:text-[3.15rem]">
               Advice that protects your time, money, and application chances.
             </h2>
           </div>

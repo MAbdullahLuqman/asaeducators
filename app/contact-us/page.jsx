@@ -2,9 +2,9 @@ import ContactInquiryForm from "@/components/ContactInquiryForm";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const contact = [
-  [Mail, "Email", "info@asaeducators.com"],
+  [Mail, "Email", ["arsalan@asaeducators.com", "info@asaeducators.com"]],
   [Clock, "Office Hours", "10:30 AM To 6:30 PM | Saturday, Sunday Off"],
-  [Phone, "Phone", "+92 300 1304726 | +92 300 1025752"],
+  [Phone, "Phone", ["+92 300 1025753", "+92 300 6162069"]],
   [MapPin, "Office", "ASA Educators, Al-Arabia Tower, Harianwala Chowk, D Ground Block B People's Colony No 1, Faisalabad."]
 ];
 
@@ -37,7 +37,15 @@ export default function ContactPage() {
               <div key={title} className="rounded-2xl bg-white p-6 shadow-xl shadow-gray-200/70">
                 <Icon className="h-8 w-8 text-[#D71920]" />
                 <h2 className="mt-5 text-xl font-extrabold text-[#0B2D57]">{title}</h2>
-                <p className="mt-2 leading-7 text-gray-600">{value}</p>
+                {Array.isArray(value) ? (
+                  <div className="mt-2 grid gap-1 leading-7 text-gray-600">
+                    {value.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-2 leading-7 text-gray-600">{value}</p>
+                )}
               </div>
             ))}
           </div>

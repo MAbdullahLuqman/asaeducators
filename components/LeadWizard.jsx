@@ -61,7 +61,7 @@ export default function LeadWizard({ compact = false }) {
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
             Free Consultation
           </p>
-          <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
+          <h2 className="mt-3 text-3xl font-bold leading-[1.18] text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
             Get a personalised study abroad plan.
           </h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
