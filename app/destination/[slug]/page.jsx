@@ -67,7 +67,7 @@ export default function DestinationDetailPage({ params }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-[#061120]/80 to-[#061120]/40" />
         <div className="relative mx-auto flex min-h-[260px] max-w-7xl flex-col items-center justify-center px-4 pt-8 text-center text-white sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold leading-[1.14] drop-shadow-lg sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+          <h1 className="max-w-4xl text-3xl font-bold leading-snug drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
             Study In {destination.country}
           </h1>
           <p className="mt-5 text-lg font-bold text-white/85">
@@ -79,7 +79,7 @@ export default function DestinationDetailPage({ params }) {
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:items-center">
           <div>
-            <h2 className="text-4xl font-bold leading-[1.14] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h2 className="max-w-4xl text-3xl font-bold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Study In {destination.country}
               <span className="asa-title-bar" />
             </h2>
@@ -131,7 +131,7 @@ export default function DestinationDetailPage({ params }) {
       <section className="bg-white py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold leading-tight text-[#071326] sm:text-4xl">
+            <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Let Us Be Your Compass in the World of Immigration
             </h2>
             <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
@@ -161,7 +161,7 @@ export default function DestinationDetailPage({ params }) {
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold leading-tight text-[#071326] sm:text-4xl">
+            <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Why Study in {destination.country}?
             </h2>
             <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg">
@@ -212,7 +212,7 @@ export default function DestinationDetailPage({ params }) {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#1B65B9]">
               Admission Requirements
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               What international students should prepare.
             </h2>
           </div>
@@ -239,7 +239,7 @@ export default function DestinationDetailPage({ params }) {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               University Admissions
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Application support for trusted university routes in {destination.country}.
             </h2>
           </div>
@@ -247,7 +247,7 @@ export default function DestinationDetailPage({ params }) {
             {universities.map((university) => (
               <div
                 key={university.name}
-                className="flex min-h-[104px] items-center rounded-2xl border border-gray-300 bg-[#F7F3E8] px-6 py-5 text-lg font-extrabold leading-tight text-[#071326] shadow-sm transition hover:-translate-y-0.5 hover:border-[#1B65B9]/35 hover:shadow-md sm:text-xl"
+                className="flex min-h-[104px] items-center rounded-2xl border border-gray-300 bg-[#F7F3E8] px-6 py-5 text-lg font-extrabold leading-[1.2] text-[#071326] shadow-sm transition hover:-translate-y-0.5 hover:border-[#1B65B9]/35 hover:shadow-md sm:text-xl"
               >
                 {university.name}
               </div>
@@ -262,7 +262,7 @@ export default function DestinationDetailPage({ params }) {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Popular Fields
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Programs students commonly explore in {destination.country}.
             </h2>
           </div>
@@ -281,7 +281,7 @@ export default function DestinationDetailPage({ params }) {
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
             Work and Career Planning
           </p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
             Post-study work visa and career opportunities.
           </h2>
           <p className="mt-5 max-w-4xl text-lg leading-8 text-white/80">
@@ -304,7 +304,7 @@ export default function DestinationDetailPage({ params }) {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               FAQ
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Questions about studying in {destination.country}.
             </h2>
             <Link href="#lead-form" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#D71920] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]">

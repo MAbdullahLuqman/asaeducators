@@ -134,7 +134,7 @@ export default function CoursesPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Test Preparation
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Practical classes built around test performance and admission deadlines.
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">

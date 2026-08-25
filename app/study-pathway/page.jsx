@@ -92,7 +92,7 @@ export default function StudyPathwayPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Our Process
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Six steps that keep your application moving.
             </h2>
           </div>
@@ -116,7 +116,7 @@ export default function StudyPathwayPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Document Readiness
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               We help students prepare the right file before deadlines become urgent.
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">

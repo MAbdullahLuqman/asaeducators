@@ -56,15 +56,15 @@ export default function LeadWizard({ compact = false }) {
 
   return (
     <section id="lead-form" className={compact ? "bg-white py-8" : "bg-gray-50 py-16 sm:py-20 lg:py-24"}>
-      <div className={`mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:px-8 ${compact ? "" : "lg:grid-cols-[0.9fr_1.1fr]"}`}>
+      <div className={`mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:px-8 ${compact ? "" : "xl:grid-cols-[0.9fr_1.1fr]"}`}>
         <div className={compact ? "hidden" : ""}>
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
             Free Consultation
           </p>
-          <h2 className="mt-3 text-3xl font-bold leading-[1.18] text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
+          <h2 className="mt-4 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
             Get a personalised study abroad plan.
           </h2>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+          <p className="mt-8 max-w-xl text-lg leading-8 text-gray-600">
             Tell us where you want to study, your current education level, and
             your preferred intake. ASA Educators will review your profile and
             guide you on universities, documents, tests, and visa preparation.

@@ -62,7 +62,7 @@ export default async function BlogPostPage({ params }) {
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/75">
             {post.category}
           </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-[1.14] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+          <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
             {post.title}
           </h1>
           <p className="mt-4 text-sm font-bold text-white/80">{formatDate(post.date)} / {post.readTime}</p>
@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }) {
           <div className="space-y-8">
             {post.sections.map((section) => (
               <section key={section.heading} className="border-b border-gray-200 pb-7 last:border-b-0">
-                <h2 className="text-2xl font-extrabold leading-tight text-[#071326]">
+                <h2 className="text-2xl font-extrabold leading-[1.2] text-[#071326]">
                   {section.heading}
                 </h2>
                 <p className="mt-4">{section.body}</p>
@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }) {
           </div>
 
           <section className="mt-8">
-            <h2 className="text-2xl font-extrabold leading-tight text-[#071326]">Conclusion</h2>
+            <h2 className="text-2xl font-extrabold leading-[1.2] text-[#071326]">Conclusion</h2>
             <p className="mt-4">
               A strong study abroad plan is built step by step. ASA Educators
               helps students compare realistic options and move through the

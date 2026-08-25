@@ -93,7 +93,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               ASA Educators
             </p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.14] text-[#071326] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Keep your study abroad plan on track
               <span className="mt-2 block h-2 w-44 rounded-full bg-[#D71920]" />
             </h1>
@@ -148,7 +148,7 @@ export default function HomePage() {
             </div>
             <div className="mt-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-xl sm:absolute sm:bottom-8 sm:left-0 sm:max-w-[270px]">
               <p className="text-sm font-bold text-gray-500">Trusted support</p>
-              <p className="mt-2 text-xl font-extrabold leading-tight text-[#071326]">
+              <p className="mt-2 text-xl font-extrabold leading-snug text-[#071326]">
                 Transforming students into confident applicants
               </p>
             </div>
@@ -162,7 +162,7 @@ export default function HomePage() {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#1B65B9]">
               Agency Overview
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               A counseling office built for clear decisions.
             </h2>
           </div>
@@ -195,7 +195,7 @@ export default function HomePage() {
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
                 Favourite Destination
               </p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
+              <h2 className="mt-3 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
                 Popular Destinations For International Students
               </h2>
             </div>
@@ -219,7 +219,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               What We Do
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
+            <h2 className="mt-3 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Complete guidance for every stage of your study abroad journey.
             </h2>
           </div>
@@ -260,7 +260,7 @@ export default function HomePage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               Study Pathway
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl lg:text-[3.15rem]">
+            <h2 className="mt-3 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               A practical process students and parents can follow.
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -286,13 +286,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#0B2D57] py-16 text-white sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+      <section className="bg-[#0B2D57] px-4 py-12 text-white sm:px-6 md:px-8 md:py-20 lg:px-16">
+        <div className="mx-auto grid max-w-7xl gap-8 xl:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
               Why ASA Educators
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-[1.18] sm:text-4xl lg:text-[3.15rem]">
+            <h2 className="mt-4 max-w-4xl text-3xl font-bold leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
               Advice that protects your time, money, and application chances.
             </h2>
           </div>

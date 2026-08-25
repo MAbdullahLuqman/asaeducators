@@ -66,7 +66,7 @@ function PostCard({ post, index }) {
           {post.category}
         </span>
       </div>
-      <h2 className="mt-6 text-2xl font-extrabold leading-tight text-[#071326] transition group-hover:text-[#1B65B9]">
+      <h2 className="mt-6 text-2xl font-extrabold leading-[1.2] text-[#071326] transition group-hover:text-[#1B65B9]">
         {post.title}
       </h2>
       <AuthorMeta date={post.date} />
@@ -97,7 +97,7 @@ async function BlogList() {
               </span>
             </div>
             <p className="mt-7 text-lg font-extrabold text-[#1B65B9]">{featured.category}</p>
-            <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.14] text-[#071326] transition group-hover:text-[#1B65B9] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-snug text-[#071326] transition group-hover:text-[#1B65B9] sm:text-4xl md:text-5xl lg:text-6xl">
               {featured.title}
             </h1>
             <AuthorMeta date={featured.date} />

@@ -45,7 +45,7 @@ export default function DestinationPage() {
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-white/70">
               Need Help Choosing?
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-extrabold leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
               Your best destination depends on profile, budget, course, and visa readiness.
             </h2>
           </div>

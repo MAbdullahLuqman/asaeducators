@@ -125,7 +125,7 @@ export default async function SuccessStoriesPage() {
               <ShieldCheck size={16} aria-hidden="true" />
               Verified student outcomes
             </p>
-            <h1 className="max-w-5xl text-4xl font-bold leading-[1.14] sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.25rem]">
+            <h1 className="max-w-5xl text-3xl font-bold leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
               ASA Educators Success Stories: Your Pathway to Europe
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">

@@ -73,7 +73,7 @@ export default function AboutPage() {
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1B65B9]">
               About Us
             </p>
-            <h2 className="mt-2 text-3xl font-extrabold leading-tight text-[#071326] sm:text-4xl">
+            <h2 className="mt-2 max-w-4xl text-3xl font-extrabold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Study Abroad Consultants
             </h2>
             <p className="mt-5 text-base leading-8 text-gray-600">
@@ -125,7 +125,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="text-3xl font-extrabold leading-tight text-[#071326] sm:text-4xl">
+            <h2 className="max-w-4xl text-3xl font-extrabold leading-snug text-[#071326] sm:text-4xl md:text-5xl lg:text-6xl">
               Why Choose ASA Educators?
             </h2>
             <p className="mt-5 text-base leading-8 text-gray-600">

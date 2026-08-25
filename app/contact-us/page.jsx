@@ -58,7 +58,7 @@ export default function ContactPage() {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#1B65B9]">
               Inquiry Form
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0B2D57] sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl font-bold leading-snug text-[#0B2D57] sm:text-4xl md:text-5xl lg:text-6xl">
               Share your country, course, and current qualification.
             </h2>
             <p className="mt-5 text-lg leading-8 text-gray-600">
