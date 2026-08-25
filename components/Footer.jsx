@@ -45,7 +45,7 @@ export default function Footer() {
             <a href="tel:+923001025753">+92 300 1025753</a>
             <a href="tel:+923006162069">+92 300 6162069</a>
             <p>10:30 AM To 6:30 PM</p>
-            <p>Saturday, Sunday Off</p>
+            <p>Sunday Off</p>
             <Link href="/lead-form" className="mt-3 w-fit rounded-full bg-[#D71920] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#b9141a]">
               Apply Now
             </Link>

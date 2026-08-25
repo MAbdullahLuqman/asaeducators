@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-[#D71920]" />
-              10:30 AM To 6:30 PM | Saturday, Sunday Off
+              10:30 AM To 6:30 PM | Sunday Off
             </span>
             <Link href="/lead-form" className="rounded-full bg-[#D71920] px-4 py-2 font-bold text-white transition hover:bg-[#b9141a]">
               Apply Now / Free Consultation

@@ -3,7 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const contact = [
   [Mail, "Email", ["arsalan@asaeducators.com", "info@asaeducators.com"]],
-  [Clock, "Office Hours", "10:30 AM To 6:30 PM | Saturday, Sunday Off"],
+  [Clock, "Office Hours", "10:30 AM To 6:30 PM | Sunday Off"],
   [Phone, "Phone", ["+92 300 1025753", "+92 300 6162069"]],
   [MapPin, "Office", "ASA Educators, Al-Arabia Tower, Harianwala Chowk, D Ground Block B People's Colony No 1, Faisalabad."]
 ];
