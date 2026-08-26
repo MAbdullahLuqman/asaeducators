@@ -19,6 +19,7 @@ export default function ContactInquiryForm() {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialValues);
   const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
 
   const ready = values.name.trim() && values.email.includes("@") && values.phone.trim().length > 6;
 
@@ -30,13 +31,15 @@ export default function ContactInquiryForm() {
     event.preventDefault();
     if (!ready) return;
     setStatus("submitting");
+    setError("");
     try {
       const { submitLead } = await import("@/lib/leads");
       await submitLead({ ...values, intake: "Contact page inquiry" });
       setValues(initialValues);
       setStep(1);
       setStatus("success");
-    } catch {
+    } catch (submitError) {
+      setError(submitError.message);
       setStatus("error");
     }
   }
@@ -86,7 +89,7 @@ export default function ContactInquiryForm() {
             <textarea value={values.message} onChange={(event) => update("message", event.target.value)} className="min-h-32 rounded-xl border border-gray-200 p-4 outline-none focus:border-[#D71920]" />
           </label>
           {status === "success" ? <p className="text-sm font-bold text-green-700">Inquiry submitted.</p> : null}
-          {status === "error" ? <p className="text-sm font-bold text-red-700">Unable to submit right now.</p> : null}
+          {status === "error" ? <p className="text-sm font-bold text-red-700">{error || "Unable to submit right now."}</p> : null}
           <div className="flex flex-col gap-3 sm:flex-row">
             <button type="button" onClick={() => setStep(1)} className="min-h-12 rounded-full border border-gray-200 px-6 text-sm font-bold text-[#0B2D57]">
               Back

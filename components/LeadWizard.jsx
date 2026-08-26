@@ -25,6 +25,7 @@ export default function LeadWizard({ compact = false }) {
   const [values, setValues] = useState(initialValues);
   const [status, setStatus] = useState("idle");
   const [stored, setStored] = useState("");
+  const [error, setError] = useState("");
 
   const ready =
     values.name.trim().length > 1 &&
@@ -41,6 +42,7 @@ export default function LeadWizard({ compact = false }) {
 
     setStatus("submitting");
     setStored("");
+    setError("");
 
     try {
       const { submitLead } = await import("@/lib/leads");
@@ -50,6 +52,7 @@ export default function LeadWizard({ compact = false }) {
       setValues(initialValues);
     } catch (error) {
       console.error("Lead submission failed", error);
+      setError(error.message);
       setStatus("error");
     }
   }
@@ -163,7 +166,7 @@ export default function LeadWizard({ compact = false }) {
           ) : null}
           {status === "error" ? (
             <p className="mt-5 rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-700">
-              Submission failed. Check Firebase keys and Firestore permissions.
+              {error || "Submission failed. Check Firebase keys and Firestore permissions."}
             </p>
           ) : null}
 
