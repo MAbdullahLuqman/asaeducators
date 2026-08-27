@@ -875,6 +875,11 @@ export default function AdminDashboard() {
                       <option value="qualified">Qualified</option>
                       <option value="closed">Closed</option>
                     </select>
+                    {lead.message ? (
+                      <p className="rounded-lg bg-white p-3 leading-6 text-muted md:col-span-5">
+                        {lead.message}
+                      </p>
+                    ) : null}
                   </div>
                 ))
               ) : (
